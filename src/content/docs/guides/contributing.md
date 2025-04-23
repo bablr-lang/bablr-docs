@@ -1,6 +1,5 @@
 ---
-title: Getting Started developing BABLR
-description: Get Started with Bablr
+title: Contributing code
 ---
 
 ## Installation
