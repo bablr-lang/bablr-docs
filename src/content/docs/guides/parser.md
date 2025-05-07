@@ -138,9 +138,9 @@ We'll have to add a new production to capture our trivia, and we'll have to call
 ```js
 class grammar {
   *FizzBuzz() {
-    yield eat(m`fizz: <*Fizz>`);
+    yield eat(m`fizz: <*Fizz />`);
     yield eat(m`#: <*Space />`); // added this line
-    yield eat(m`buzz: <*Buzz>`);
+    yield eat(m`buzz: <*Buzz />`);
   }
 
   *Space() {
@@ -160,9 +160,9 @@ If we want to preserve `Space` as a general production we can pass props to it f
 ```js
 class grammar {
   *FizzBuzz() {
-    yield eat(m`fizz: <*Fizz>`);
+    yield eat(m`fizz: <*Fizz />`);
     yield eat(m`#: <*Space />`, o({ newline: false })); // props!
-    yield eat(m`buzz: <*Buzz>`);
+    yield eat(m`buzz: <*Buzz />`);
   }
 
   *Space({ props: { newline = true } }) {
@@ -190,11 +190,11 @@ class grammar {
   }
 
   *Value() {
-    if (yield eatMatch(m`<FizzBuzz>`)) {
+    if (yield eatMatch(m`<FizzBuzz />`)) {
       // success
-    } else if (yield eatMatch(m`<*Fizz>`)) {
+    } else if (yield eatMatch(m`<*Fizz />`)) {
       // success
-    } else if (yield eatMatch(m`<*Buzz>`)) {
+    } else if (yield eatMatch(m`<*Buzz />`)) {
       // success
     } else {
       // products which match nothing fail by default
@@ -278,16 +278,16 @@ class grammar {
   }
 
   *Value() {
-    if (yield eatMatch(m`<FizzBuzz>`)) {
-    } else if (yield eatMatch(m`<*Fizz>`)) {
-    } else if (yield eatMatch(m`<*Buzz>`)) {
+    if (yield eatMatch(m`<FizzBuzz />`)) {
+    } else if (yield eatMatch(m`<*Fizz />`)) {
+    } else if (yield eatMatch(m`<*Buzz />`)) {
     }
   }
   
   *FizzBuzz() {
-    yield eat(m`fizz: <*Fizz>`);
+    yield eat(m`fizz: <*Fizz />`);
     yield eat(m`#: <*Space />`, o({ newline: false }));
-    yield eat(m`buzz: <*Buzz>`);
+    yield eat(m`buzz: <*Buzz />`);
   }
 
   *Fizz() {
