@@ -1,5 +1,7 @@
 ---
-title: CSTML
+layout: "@astrojs/starlight/components/MarkdownContent.astro"
+highlighter: "@astrojs/starlight/components/Bedazzlr.astro"
+title: "Intro to CSTML"
 ---
 <!0:cstml>
 <_>
@@ -16,7 +18,7 @@ title: CSTML
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Stream' }>
       '"The quick brown fox jumped over the lazy dog."' "\n"
     </>
   </>
@@ -26,7 +28,7 @@ title: CSTML
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       '"The quick brown fox "' "\n"
       '"jumped over the lazy dog."' "\n"
     </>
@@ -41,7 +43,7 @@ title: CSTML
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       '<Verb> "jumped" </>' "\n"
     </>
   </>
@@ -51,7 +53,7 @@ title: CSTML
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       '<Verb "jumped" />' "\n"
     </>
   </>
@@ -61,7 +63,7 @@ title: CSTML
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       '<Verb "jumped" { tense: "past" } />' "\n"
     </>
   </>
@@ -71,7 +73,7 @@ title: CSTML
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       '<Verb { tense: "past", unicode: { graphemes: 6 } }> "jumped" </>' "\n"
     </>
   </>
@@ -81,7 +83,7 @@ title: CSTML
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       '<Thing>' "\n"
       '  <Article "The" />' "\n"
       '  " "' "\n"
@@ -98,16 +100,16 @@ title: CSTML
 
   <p>
     "CSTML nodes can have named relationships to each other! Here we we've added named relationships for "
-    <code 'subject:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code 'subject:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     ", "
-    <code 'verb:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code 'verb:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " and "
-    <code 'object:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code 'object:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " to help highlight the internal syntactic structure of our sentence:"
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       '<Sentence>' "\n"
       '  subject:' "\n"
       '  <Thing>' "\n"
@@ -139,7 +141,7 @@ title: CSTML
 
   <p>
     "We also used the "
-    <code 'modifier[]:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code 'modifier[]:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " reference in this example. Here "
     <code '[]' />
     " tells us that there may be more than one of these and that together they form a list."
@@ -150,11 +152,11 @@ title: CSTML
   <p>
     "One of the most interesting features of CSTML documents is that they're permitted to have gaps in them. A gap is a place where some content is known to be missing. Gaps allow a document to be a template, like form you fill out or a mad-lib. A gap tag is represented in a CSTML document as "
 
-    <code '<//>' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code '<//>' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       '<$NameBadge>' "\n"
       '  "Hello, my name is "' "\n"
       '  <//>' "\n"
@@ -180,12 +182,12 @@ title: CSTML
 
   <p>
     "Gaps power another feature of CSTML, shifting, which is designed to help you create documents by appending tags as you read left to right. For example when parsing the code "
-    <code '10 + 20' { bablrLanguage: 'https://bablr.org/languages/universe/es3' } />
+    <code '10 + 20' { 'bablr-lang': 'https://bablr.org/languages/universe/es3' } />
     " you'll first encounter a complete and valid number (" <code '10' /> ") and only as you proceed to parse further will you understand that you're parsing an addition expression:"
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       "<Number '10' />" "\n"
       "^^^" "\n"
       "<Addition>" "\n"
@@ -201,7 +203,7 @@ title: CSTML
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       "<Addition>" "\n"
       "  left+: <Number '10' />" "\n"
       "  operator: '+'" "\n"
@@ -212,20 +214,20 @@ title: CSTML
 
   <p>
     "The " <code '+' /> " flag on a reference tag, like in " 
-    <code 'left+:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code 'left+:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " alerts the consumer that a shift may occur at this location, which is to say that another open node tag might later jump in front of the open node tag immediately following " <code 'left+' /> "."
   </>
 
   <p>
     "Sometimes we need to know not just what we did find, but also what we might have found. We do this with a \"cover\" which is a concept already well-worn in parser design. Covers are written as nodes with an " <code "_" /> " before their name, like "
-    <code '<_Cover>' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code '<_Cover>' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     ". An "
-    <code '_:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code '_:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " reference indicates the particular node (or cover) being covered."
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       "<_Expression>" "\n"
       "  _: <Addition>" "\n"
       "    left+:" "\n"
@@ -244,30 +246,30 @@ title: CSTML
 
   <p>
     "Sharp-eyed readers will notice that I've cheated a little on this example. So far I've left out the spaces! Thus my document doesn't really say "
-    <code '10 + 20' { bablrLanguage: 'https://bablr.org/languages/universe/es3' } />
+    <code '10 + 20' { 'bablr-lang': 'https://bablr.org/languages/universe/es3' } />
     " like I've claimed, instead it would read "
-    <code '10+20' { bablrLanguage: 'https://bablr.org/languages/universe/es3' } />
+    <code '10+20' { 'bablr-lang': 'https://bablr.org/languages/universe/es3' } />
     " which is a good bit more strenuous on the eyes. I left the spaces out because at first I didn't have any place I could put them where they wouldn't intefere with the shift operator ("
-    <code '^^^' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code '^^^' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     ")."
   </>
 
   <p>
     "Covers solve this problem by creating a place to put the space: inside the cover. Only certain types of references are allowed inside covers: a single "
-    <code '_:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code '_:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " for the target node, and "
-    <code '#:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code '#:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     ", which are trivia references. Technically everywhere so far we've written "
-    <code '" "' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code '" "' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " it would have been more correct to write "
-    <code '#: " "' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Property' } />
+    <code '#: " "' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Property' } />
     ". Doing so here allows us to complete the example for "
-    <code '10 + 20' { bablrLanguage: 'https://bablr.org/languages/universe/es3' } />
+    <code '10 + 20' { 'bablr-lang': 'https://bablr.org/languages/universe/es3' } />
     " as seen by a shifting parser:"
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       "<_Expression>" "\n"
       "  _: <Number '10' />" "\n"
       '  #: " "' "\n"
@@ -291,12 +293,12 @@ title: CSTML
 
   <p>
     "Namespaces are one of the most infamously tricky features of XML. CSTML offers a much simpler implementation of namespaces using binding tags, written "
-    <code ':Binding:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code ':Binding:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     ":"
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       ":JS: <_Expression>" "\n"
       "  _: :JSX: <OpenNodeTag />" "\n"
       "</>" "\n"
@@ -313,15 +315,15 @@ title: CSTML
 
   <p>
     "This is a crucial detail which informs the design. CSTML actually started out using a " <code '<Lang.Node />' /> " syntax like XML's but when we asked ourselves if " <code 'Lang.' /> " really belonged inside "
-    <code '<Node />' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code '<Node />' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " in a philosophical sense, we were forced to conclude that it did not: it isn't part of the _identity_ of `Node` at all!"
   </>
 
   <p>
     "To understand why this matters think about taking a node from one namespace and dropping it into another. Because nodes don't have to use the same name for the same namespace you might need to change the namespace name just to preserve the meaning. For example of you take a node that in XML is " <code '<Lang.Node />' /> " and drop it into a different namespace, you might need to rewrite that node just to preserve the meaning. Say the new name for the namespace is " <code 'Language' /> ", then the node needs to be changed to " <code '<Language.Node />' /> ". In XML you're forced to build a whole new node. In CSTML you only need to create a new "
-    <code ':Language:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code ':Language:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " binding to replace the "
-    <code ':Lang:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code ':Lang:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " binding. Since the binding is outside the node, the node itself remains identity-stable."
   </>
 
@@ -330,38 +332,38 @@ title: CSTML
   </>
 
   <pre>
-    <code { bablrLanguage: 'https://bablr.org/languages/core/en/cstml' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       ":Foo: :Bar: <Node />" "\n"
     </>
   </>
 
   <p>
     "You can access your parent namespace with "
-    <code ':..:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code ':..:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     ". Your parent namespace might not be the same thing as your parent node's namespace though! "
-    <code ':..:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code ':..:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " specifically refers to the namespace defined by the most recent in-scope binding tag."
   </>
 
   <p>
     "You can join multiple names within a single binding tag with " <code '/' /> ". For example you might write "
-    <code ':Foo/Bar:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code ':Foo/Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " to get _almost_ the same effect as "
-    <code ':Foo: :Bar:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Stream' } />
+    <code ':Foo: :Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Stream' } />
     ". But it is not _quite_ the same because "
-    <code ':Foo/Bar:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code ':Foo/Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " is _all one binding tag_ while "
-    <code ':Foo: :Bar:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Stream' } />
+    <code ':Foo: :Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Stream' } />
     " is two binding tags. This means that thanks to our clever definition of "
-    <code ':..:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code ':..:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " you can escape "
-    <code ':Foo/Bar:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code ':Foo/Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " with just "
-    <code ':..:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code ':..:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " as opposed to the "
-    <code ':../..:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Tag' } />
+    <code ':../..:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " you must use to escape "
-    <code ':Foo: :Bar:' { bablrLanguage: 'https://bablr.org/languages/core/en/cstml', bablrProduction: 'Stream' } />
+    <code ':Foo: :Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Stream' } />
     "."
   </>
 </>

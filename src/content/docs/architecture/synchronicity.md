@@ -1,5 +1,0 @@
----
-title: Synchronicity
----
-
-## OK

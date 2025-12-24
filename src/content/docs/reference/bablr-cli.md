@@ -42,7 +42,7 @@ Running the above command produces the following output. Note that this is a str
 <>
   .:
   <Array>
-    openToken: <*Punctuator '[' balanced=']' />
+    openToken: <* '[' balanced=']' />
     <#*Space:Space '\n  ' />
     separators[]: []
     elements[]: []
@@ -58,22 +58,22 @@ Running the above command produces the following output. Note that this is a str
       exponentSeparatorToken: null
       exponentPart: null
     </>
-    separators[]: <*Punctuator ',' />
+    separators[]: <* ',' />
     <#*Space:Space '\n  ' />
     elements[]:
     <Boolean>
       sigilToken: <*Keyword 'true' />
     </>
-    separators[]: <*Punctuator ',' />
+    separators[]: <* ',' />
     <#*Space:Space '\n  ' />
     elements[]:
     <String>
-      openToken: <*Punctuator '"' balanced='"' balancedSpan='String' />
+      openToken: <* '"' balanced='"' balancedSpan='String' />
       content: <*StringContent '3' />
-      closeToken: <*Punctuator '"' balancer />
+      closeToken: <* '"' />
       <#*Space:Space '\n' />
     </>
-    closeToken: <*Punctuator ']' balancer />
+    closeToken: <* ']' />
   </>
 </>
 ```

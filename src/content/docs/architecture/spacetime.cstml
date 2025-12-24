@@ -1,0 +1,82 @@
+---
+layout: "@astrojs/starlight/components/MarkdownContent.astro"
+title: Stream iterators
+---
+<!0:cstml>
+<_>
+  <p>
+    "One of the innovations that makes BABLR work efficiently is its use of stream iterators. BABLR is a stream parser, so the representation of the stream is key to the architecture of the code."
+  </>
+
+  <p>
+    "Stream iterators provide a middle ground between Javascript's sync and async iterators. They are asyncronous when they need to be, and synchronous when they can be."
+  </>
+
+  <p>
+    "While sync and async are the terms Javacsript uses and I generally make a point of following Javascript's conventions as closely as possible, understanding why it's valuable to have a third kind of iterator I think it's easiest to understand if in this document we use a more descriptive name for stream iterators: they are spacetime iterators, which then are distinct from space iterators (sync) and time iterators (async)."
+  </>
+
+  <p>
+    "Iterating in space is like having a bunch of objects. You have them all arranged nicely in front of you, like playing cards in a stack or pieces on a chess board. Because the objects are laid out in space, you never have to wait for anything to be able to produce the complete list of objects because you can (theoretically) perform the iteration in a single moment in time by moving between different locations in space."
+  </>
+
+  <p>
+    "Iterating in time requires you to wait for things to happen and then react to them. A time iterator is a sequence of moments in time at which a new value is provided." 
+  </>
+
+  <p>
+    "Because iteration is, in general, a pattern for sequencing events in time you might not think that this distinction is very important, but the difference is speed."
+  </>
+    
+  <p>
+    "Imagine you were slicing up a few cucumbers to put into a big salad, say. You might want to cut each cuke into 20 cucumber coins, and a quick-handed chef might do it in the space of a few seconds, in essence because the motions in space play out in a fast rhythm due to their predictability. Once once cucumber is sliced, then the chef's knife sits idle until another moment in time when another whole cucumber is on the cutting board ready for chopping. The whole process that produces 60 cucumber coins from 3 cucumbers, then, is a spacetime iteration."
+  </>
+
+  <p>
+    "Performance is probably the most major reason to do spacetime iteration. Our chef would be much slower if his or her chopping rhythm were disrupted by having the cutting board with the cucumber on it taken away and replaced between each slice. A cut that took .1 seconds might now take 1 second, changing the overall duration of the process from 9 seconds to 63 seconds!"
+  </>
+
+  <h2 "Example" />
+  
+  <pre>
+    <code>
+      "let toUpperCase = (source) => new Wrapper(toUpperCase__(source));" "\n"
+      "\n"
+      "function *toUpperCase__(source) {" "\n"
+      "  let iter = source[Symbol.streamIterator]();" "\n"
+      "  let step;" "\n"
+      "  try {" "\n"
+      "    while(true) {" "\n"
+      "      step = iter.next();" "\n"
+      "      if (step instanceOf Promise) {" "\n"
+      "        // the spacetime magic happens here!" "\n"
+      "        // this yield works more like an await " "\n"
+      "        step = yield step;" "\n"
+      "      }" "\n"
+      "    }" "\n"
+      "    if (step.done) break;" "\n"
+      "    let chr = step.value;" "\n"
+      "\n"
+      "    yield chr.toUpperCase();" "\n"
+      "  } finally {" "\n"
+      "    iter?.return();" "\n"
+      "  }" "\n"
+      "}" "\n"
+      "\n"
+      "class Wrapper() {" "\n"
+      "  constructor(generator) {" "\n"
+      "    this.generator = generator;" "\n"
+      "  }" "\n"
+      "\n"
+      "  next(value) {" "\n"
+      "    let step = this.generator.next(value);" "\n"
+      "\n"
+      "    // resolve the promise for the wrapped generator" "\n"
+      "    // rolls the promise into `step` for the consumer" "\n"
+      "    return step.value instanceof Promise" "\n"
+      "          ? step.value.then((value) => this.next(value));" "\n"
+      "          : step;" "\n"
+      "}" "\n"
+    </>
+  </>
+</>
