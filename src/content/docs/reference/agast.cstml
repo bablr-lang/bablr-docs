@@ -1,9 +1,10 @@
 ---
 layout: "@astrojs/starlight/components/MarkdownContent.astro"
+highlighter: "@astrojs/starlight/components/Bedazzlr.astro"
 title: 'agAST'
 ---
 <!0:cstml>
-<_>
+<__>
   <p>
     "CSTML is an embedding for text documents, by which I mean that a CSTML document is a container that can hold and mark up any unicode text. agAST, then, is a container for CSTML documents. An agAST tree is capable of holding any CSTML document. In particular agAST encodes CSTML documents into a deeply immutable data structure made up of Javascript objects."
   </>
@@ -23,13 +24,13 @@ title: 'agAST'
   </>
 
   <pre>
-    <code>
+    <code { 'bablr-lang': 'https://bablr.org/languages/universe/es6', 'bablr-prod': 'Statement' }>
       "let tag = { type, value };" "\n"
     </>
   </>
 
   <p>
-    <code "tag.type" /> " is a registered Symbol (it uses " <code "Symbol.for(typeName)" />  "), and it tells us what kind of thing a tag represents, and thus what shape of data should expect to find in " <code "value" /> "."
+    <code "tag.type" { 'bablr-lang': 'https://bablr.org/languages/universe/es6' } /> " is a registered Symbol (it uses " <code "Symbol.for(typeName)" { 'bablr-lang': 'https://bablr.org/languages/universe/es6' } />  "), and it tells us what kind of thing a tag represents, and thus what shape of data should expect to find in " <code "value" /> "."
   </>
 
   <p>
@@ -37,47 +38,120 @@ title: 'agAST'
   </>
 
   <pre>
-    <code>
-      let tagStream = [
-        // <!0:cstml { bablr: { language: 'https://path/to/language' } }>
-        {
-          type: DoctypeTag,
-          value: {
-            version: 0,
-            attributes:  { bablr: { language: 'https://path/to/language' },
-          }
-        },
-        // <_>
-        {
-          type: OpenNodeTag,
-          value: {
-            flags: { fragment: true, cover: true },
-            type: null,
-            attributes: {},
-            literalValue: null,
-            selfClosing: false
-          }
-        },
-        // _:
-        {
-          type: ReferenceTag,
-          value: 
-        }
-      ]
-        
-        OpenNodeTag
-        
-        CloseNodeTag
-        
-        ReferenceTag
-        
-        ShiftTag
-        
-        BindingTag
-        
-        GapTag
-        
-        NullTag
+    <code { 'bablr-lang': 'https://bablr.org/languages/universe/es6', 'bablr-prod': 'Statement' }>
+      "let tagStream = [" "\n"
+      "  // <!0:cstml { bablr: { language: 'https://path/to/language' } }>" "\n"
+      "  {" "\n"
+      "    type: DoctypeTag," "\n"
+      "    value: {" "\n"
+      "      version: 0," "\n"
+      "      attributes: { bablr: { language: 'https://path/to/language' } }," "\n"
+      "    }" "\n"
+      "  }," "\n"
+      "  // <_>" "\n"
+      "  {" "\n"
+      "    type: OpenNodeTag," "\n"
+      "    value: {" "\n"
+      "      type: '_'," "\n"
+      "      name: null," "\n"
+      "      attributes: {}," "\n"
+      "      literalValue: null," "\n"
+      "      selfClosing: false" "\n"
+      "    }" "\n"
+      "  }," "\n"
+      "  // _+:" "\n"
+      "  {" "\n"
+      "    type: ReferenceTag," "\n"
+      "    value: {" "\n"
+      "      type: '_'," "\n"
+      "      name: null," "\n"
+      "      isArray: false," "\n"
+      "      flags: { expression: true, intrinsic: false, hasGap: false }," "\n"
+      "    }" "\n"
+      "  }," "\n"
+      "  // <Node>" "\n"
+      "  {" "\n"
+      "    type: OpenNodeTag," "\n"
+      "    value: {" "\n"
+      "      type: null," "\n"
+      "      name: 'Node'," "\n"
+      "      attributes: {}," "\n"
+      "      literalValue: null," "\n"
+      "      selfClosing: false" "\n"
+      "    }" "\n"
+      "  }," "\n"
+      "  // </>" "\n"
+      "  {" "\n"
+      "    type: CloseNodeTag," "\n"
+      "    value: undefined" "\n"
+      "  }," "\n"
+      "  // ^^^" "\n"
+      "  {" "\n"
+      "    type: ShiftTag," "\n"
+      "    value: undefined" "\n"
+      "  }," "\n"
+      "  // <Node>" "\n"
+      "  {" "\n"
+      "    type: OpenNodeTag," "\n"
+      "    value: {" "\n"
+      "      type: null," "\n"
+      "      name: 'OuterNode'," "\n"
+      "      attributes: {}," "\n"
+      "      literalValue: null," "\n"
+      "      selfClosing: false" "\n"
+      "    }" "\n"
+      "  }," "\n"
+      "  // :Language:" "\n"
+      "  {" "\n"
+      "    type: BindingTag," "\n"
+      "    value: {" "\n"
+      "      segments: [{" "\n"
+      "        type: null," "\n"
+      "        name: 'Language'" "\n"
+      "      }]" "\n"
+      "    }" "\n"
+      "  }," "\n"
+      "  // inner:" "\n"
+      "  {" "\n"
+      "    type: ReferenceTag," "\n"
+      "    value: {" "\n"
+      "      type: null," "\n"
+      "      name: 'inner'," "\n"
+      "      isArray: false," "\n"
+      "      flags: { expression: false, intrinsic: false, hasGap: false,  }," "\n"
+      "    }" "\n"
+      "  }," "\n"
+      "  // <//>" "\n"
+      "  {" "\n"
+      "    type: GapTag," "\n"
+      "    value: undefined" "\n"
+      "  }," "\n"
+      "  // </>" "\n"
+      "  {" "\n"
+      "    type: CloseNodeTag," "\n"
+      "    value: undefined" "\n"
+      "  }," "\n"
+      "  // empty:" "\n"
+      "  {" "\n"
+      "    type: ReferenceTag," "\n"
+      "    value: {" "\n"
+      "      type: null," "\n"
+      "      name: 'empty'," "\n"
+      "      isArray: false," "\n"
+      "      flags: { expression: false, intrinsic: false, hasGap: false,  }," "\n"
+      "    }" "\n"
+      "  }," "\n"
+      "  // null" "\n"
+      "  {" "\n"
+      "    type: NullTag," "\n"
+      "    value: undefined" "\n"
+      "  }," "\n"
+      "  // </>" "\n"
+      "  {" "\n"
+      "    type: CloseNodeTag," "\n"
+      "    value: undefined" "\n"
+      "  }," "\n"
+      "];" "\n"
     </>
   </>
 </>
