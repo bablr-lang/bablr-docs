@@ -9,6 +9,7 @@ Because agAST tree nodes are immutable this VM is the best way to construct them
 Each tag in the stream acts like a description of a transition that alters the state of the VM.
 
 ## Usage
+
 ```js
 import { agast } from '@bablr/agast-vm';
 import * as b from '@bablr/agast-helpers/builders';
@@ -17,10 +18,13 @@ let vm = agast();
 let lang = 'https://example';
 let step;
 
-let openTag = b.buildOpenNodeTag(b.tokenFlags, lang, 'Token');
+let openTag = b.buildOpenNodeTag(
+  b.tokenFlags,
+  lang,
+  'Token',
+);
 let closeTag = b.buildLiteralTag('OK');
 let closeTag = b.buildCloseNodeTag();
-
 
 step = vm.next(openTag);
 step = vm.next(literalTag);
@@ -36,13 +40,15 @@ The following CSTML tag types are supported by `agast-vm`. Most but not all of t
 **`DoctypeTag`**: A doctype tag begins a new CSTML document. `agast-vm` supports constructing both complete documents and individual nodes. A document consists of 0 or 1 nodes and any adjacent trivia. This arrangement ensures we are able to store documents whose only contents are trivia.
 
 ```js
-const buildDoctypeTag = (attributes = Object.freeze({})) => {
+const buildDoctypeTag = (
+  attributes = Object.freeze({}),
+) => {
   return Object.freeze({
     type: Symbol.for('DoctypeTag'),
     value: Object.freeze({
       doctype: 'cstml',
       version: 0,
-      attributes
+      attributes,
     }),
   });
 };
@@ -86,16 +92,20 @@ const buildCloseNodeTag = () => {
 const buildReferenceTag = (
   type = null,
   name = null,
-  isArray = false,
   flags = Object.freeze({
+    array: false,
     expression: false,
+    intrinsic: false,
     hasGap: false,
   }),
-  index = null,
 ) => {
   return Object.freeze({
     type: Symbol.for('ReferenceTag'),
-    value: Object.freeze({ type, name, isArray, index, flags }),
+    value: Object.freeze({
+      type,
+      name,
+      flags,
+    }),
   });
 };
 ```
@@ -106,29 +116,18 @@ const buildReferenceTag = (
 const buildNullTag = () => {
   return Object.freeze({
     type: Symbol.for('NullTag'),
-    value: undefined
+    value: undefined,
   });
 };
 ```
 
-**`GapTag`**: A gap tag indicates that the value which the preceding reference should resolve to is not currently availble. Gap tags manifest as holes in the content of a tree -- like sockets that trees and nulls can both plug into. 
+**`GapTag`**: A gap tag indicates that the value which the preceding reference should resolve to is not currently availble. Gap tags manifest as holes in the content of a tree -- like sockets that trees and nulls can both plug into.
 
 ```js
 const buildGapTag = () => {
   return Object.freeze({
     type: Symbol.for('GapTag'),
-    value: undefined
-  });
-};
-```
-
-**`InitializerTag`**: An initializer tag indicates that the previous reference defines a property which will definitely part of the node but which is not yet ready to be specified. By using initializer tags to create the node's properties in a predictable order you can ensure that the resultant nodes are monomorphic, even if the order in which property values are bound later is not uniform.
-
-```js
-const buildInitializerTag = (isArray = false) => {
-  return Object.freeze({
-    type: Symbol.for('InitializerTag'),
-    value: Object.freeze({ isArray })
+    value: undefined,
   });
 };
 ```
@@ -150,7 +149,7 @@ const buildLiteralTag = (value) => {
 const buildAttributeDefinition = (path, value) => {
   return Object.freeze({
     type: Symbol.for('AttributeDefinition'),
-    value: Object.freeze({ path, value })
+    value: Object.freeze({ path, value }),
   });
 };
 ```
@@ -161,7 +160,7 @@ const buildAttributeDefinition = (path, value) => {
 const buildShiftTag = (index) => {
   return Object.freeze({
     type: Symbol.for('ShiftTag'),
-    value: Object.freeze({ index })
+    value: Object.freeze({ index }),
   });
 };
 ```
