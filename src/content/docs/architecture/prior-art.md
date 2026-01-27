@@ -1,8 +1,5 @@
-
 ---
-
 title: Prior art
-
 ---
 
 These are many, many pieces of software that inspired BABLR's design, most of them labors of love in their own right. Without these projects to guide the way, it would not have been possible to conceive of BABLR's design.
@@ -31,7 +28,7 @@ CSTML as a language has its own significant prior art, which [you can read about
 
 - **VSCode:** VSCode is the current market force to be reckoned with. Among its greatest assets: it runs natively in a web browser. Where Atom required a web browser specially fused to a node runtime, VSCode was possibly the first full-featured IDE that worked normally when used in a web page. It offered much of Atom's hackability, growing an impressive number of plugins in its registry. It too is showing signs of outgrowing its design, though. Most places where the VSCode user experience falls short are not bugs, necessarily, so much as failures to have a complete, unified architectural theory of user experience. That is to say, there are many structural flaws in its UX design for which no engineer within Microsoft (or without) has ever taken or been given adequate political cover to take on.
 
-- **Zed:** Founded by Atom's dev team, Zed was the rewrite that Atom always wanted to be able to do but couldn't when Microsoft bought Github and made the executive decision to kill a product it might otherwise have had to compete with. Unfortunately Zed decided to do that rewrite in Rust. This has slowed their iteration speed, caused much of their dev effort to go to cross-platform support instead of innovation, cut them off from being able to offer their experience on the web, severely limited their hackability, and generally made theirs a niche tool for enthusiasts. What's worse, their reliance on LSP -- a product which believes that the *presentation layer* should be the primary abstraction layer -- means their product is forever doomed to look like a VSCode knock-off.
+- **Zed:** Founded by Atom's dev team, Zed was the rewrite that Atom always wanted to be able to do but couldn't when Microsoft bought Github and made the executive decision to kill a product it might otherwise have had to compete with. Unfortunately Zed decided to do that rewrite in Rust. This has slowed their iteration speed, caused much of their dev effort to go to cross-platform support instead of innovation, cut them off from being able to offer their experience on the web, severely limited their hackability, and generally made theirs a niche tool for enthusiasts. What's worse, their reliance on LSP -- a product which believes that the _presentation layer_ should be the primary abstraction layer -- means their product is forever doomed to look like a VSCode knock-off.
 
 - **Cursor:** Damn, 3 billion, really?
 

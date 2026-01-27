@@ -1,5 +1,6 @@
 ---
 layout: "@bablr/starlight/components/MarkdownContent.astro"
+highlighter: "../components/Bedazzlr.astro"
 title: 'agAST'
 ---
 <!0:cstml>
@@ -36,48 +37,5 @@ title: 'agAST'
     "Here are the basic types of tags which may occur in an agAST document:"
   </>
 
-  <pre>
-    <code>
-      let tagStream = [
-        // <!0:cstml { bablr: { language: 'https://path/to/language' } }>
-        {
-          type: DoctypeTag,
-          value: {
-            version: 0,
-            attributes:  { bablr: { language: 'https://path/to/language' },
-          }
-        },
-        // <_>
-        {
-          type: OpenNodeTag,
-          value: {
-            flags: { fragment: true, cover: true },
-            type: null,
-            attributes: {},
-            literalValue: null,
-            selfClosing: false
-          }
-        },
-        // _:
-        {
-          type: ReferenceTag,
-          value: 
-        }
-      ]
-        
-        OpenNodeTag
-        
-        CloseNodeTag
-        
-        ReferenceTag
-        
-        ShiftTag
-        
-        BindingTag
-        
-        GapTag
-        
-        NullTag
-    </>
-  </>
+  
 </>

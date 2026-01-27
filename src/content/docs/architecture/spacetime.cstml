@@ -1,5 +1,6 @@
 ---
 layout: "@bablr/starlight/components/MarkdownContent.astro"
+highlighter: "../components/Bedazzlr.astro"
 title: Stream iterators
 ---
 <!0:cstml>
@@ -39,7 +40,7 @@ title: Stream iterators
   <h2 "Example" />
   
   <pre>
-    <code>
+    <code { 'bablr-lang': 'https://bablr.org/languages/universe/es6', 'bablr-prod': 'Program' }>
       "let toUpperCase = (source) => new Wrapper(toUpperCase__(source));" "\n"
       "\n"
       "function *toUpperCase__(source) {" "\n"
@@ -48,14 +49,14 @@ title: Stream iterators
       "  try {" "\n"
       "    while(true) {" "\n"
       "      step = iter.next();" "\n"
-      "      if (step instanceOf Promise) {" "\n"
+      "      if (step instanceof Promise) {" "\n"
       "        // the spacetime magic happens here!" "\n"
       "        // this yield works more like an await " "\n"
       "        step = yield step;" "\n"
       "      }" "\n"
+      "      if (step.done) break;" "\n"
+      "      let chr = step.value;" "\n"
       "    }" "\n"
-      "    if (step.done) break;" "\n"
-      "    let chr = step.value;" "\n"
       "\n"
       "    yield chr.toUpperCase();" "\n"
       "  } finally {" "\n"
@@ -63,7 +64,7 @@ title: Stream iterators
       "  }" "\n"
       "}" "\n"
       "\n"
-      "class Wrapper() {" "\n"
+      "class Wrapper {" "\n"
       "  constructor(generator) {" "\n"
       "    this.generator = generator;" "\n"
       "  }" "\n"
@@ -74,8 +75,9 @@ title: Stream iterators
       "    // resolve the promise for the wrapped generator" "\n"
       "    // rolls the promise into `step` for the consumer" "\n"
       "    return step.value instanceof Promise" "\n"
-      "          ? step.value.then((value) => this.next(value));" "\n"
+      "          ? step.value.then((value) => this.next(value))" "\n"
       "          : step;" "\n"
+      "  }" "\n"
       "}" "\n"
     </>
   </>
