@@ -1,6 +1,6 @@
 ---
-layout: "@astrojs/starlight/components/MarkdownContent.astro"
-highlighter: "@astrojs/starlight/components/Bedazzlr.astro"
+layout: "@bablr/starlight/components/MarkdownContent.astro"
+highlighter: "../components/Bedazzlr.astro"
 title: "Intro to CSTML"
 ---
 <!0:cstml>

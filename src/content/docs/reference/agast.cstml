@@ -1,5 +1,5 @@
 ---
-layout: "@astrojs/starlight/components/MarkdownContent.astro"
+layout: "@bablr/starlight/components/MarkdownContent.astro"
 title: 'agAST'
 ---
 <!0:cstml>
