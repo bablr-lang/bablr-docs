@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@bablr/starlight';
+import { searchForWorkspaceRoot } from 'vite';
 
 import node from '@astrojs/node';
 
@@ -38,6 +39,11 @@ export default defineConfig({
     }),
   ],
   server: { port: 4321 },
+  vite: {
+    server: {
+      fs: { allow: searchForWorkspaceRoot(import.meta.url) },
+    },
+  },
   site: 'https://build.bablr.org',
   adapter: node({
     mode: 'standalone',
