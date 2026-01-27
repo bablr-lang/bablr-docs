@@ -1,8 +1,11 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@bablr/starlight';
-import { searchForWorkspaceRoot } from 'vite';
+import { findUpMultipleSync as findUp } from 'find-up';
+import { dirname } from 'node:path';
 
 import node from '@astrojs/node';
+
+let gitRoots = findUp('.git', { cwd: import.meta.url, type: 'directory' });
 
 // https://astro.build/config
 export default defineConfig({
@@ -41,7 +44,7 @@ export default defineConfig({
   server: { port: 4321 },
   vite: {
     server: {
-      fs: { allow: searchForWorkspaceRoot(import.meta.url) },
+      fs: { allow: gitRoots && [dirname(gitRoots[gitRoots.length - 1])] },
     },
   },
   site: 'https://build.bablr.org',
