@@ -182,7 +182,7 @@ title: "Intro to CSTML"
 
   <p>
     "Gaps power another feature of CSTML, shifting, which is designed to help you create documents by appending tags as you read left to right. For example when parsing the code "
-    <code '10 + 20' { 'bablr-lang': 'https://bablr.org/languages/universe/es6' } />
+    <code '10 + 20' { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6' } />
     " you'll first encounter a complete and valid number (" <code '10' /> ") and only as you proceed to parse further will you understand that you're parsing an addition expression:"
   </>
 
@@ -246,9 +246,9 @@ title: "Intro to CSTML"
 
   <p>
     "Sharp-eyed readers will notice that I've cheated a little on this example. So far I've left out the spaces! Thus my document doesn't really say "
-    <code '10 + 20' { 'bablr-lang': 'https://bablr.org/languages/universe/es6' } />
+    <code '10 + 20' { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6' } />
     " like I've claimed, instead it would read "
-    <code '10+20' { 'bablr-lang': 'https://bablr.org/languages/universe/es6' } />
+    <code '10+20' { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6' } />
     " which is a good bit more strenuous on the eyes. I left the spaces out because at first I didn't have any place I could put them where they wouldn't intefere with the shift operator ("
     <code '^^^' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     ")."
@@ -264,7 +264,7 @@ title: "Intro to CSTML"
     " it would have been more correct to write "
     <code '#: " "' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Property' } />
     ". Doing so here allows us to complete the example for "
-    <code '10 + 20' { 'bablr-lang': 'https://bablr.org/languages/universe/es6' } />
+    <code '10 + 20' { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6' } />
     " as seen by a shifting parser:"
   </>
 

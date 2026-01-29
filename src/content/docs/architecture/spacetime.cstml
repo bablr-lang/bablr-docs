@@ -40,7 +40,7 @@ title: Stream iterators
   <h2 "Example" />
   
   <pre>
-    <code { 'bablr-lang': 'https://bablr.org/languages/universe/es6', 'bablr-prod': 'Program' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6', 'bablr-prod': 'Program' }>
       "let toUpperCase = (source) => new Wrapper(toUpperCase__(source));" "\n"
       "\n"
       "function *toUpperCase__(source) {" "\n"
@@ -75,8 +75,8 @@ title: Stream iterators
       "    // resolve the promise for the wrapped generator" "\n"
       "    // rolls the promise into `step` for the consumer" "\n"
       "    return step.value instanceof Promise" "\n"
-      "          ? step.value.then((value) => this.next(value))" "\n"
-      "          : step;" "\n"
+      "      ? step.value.then((value) => this.next(value))" "\n"
+      "      : step;" "\n"
       "  }" "\n"
       "}" "\n"
     </>
