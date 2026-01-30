@@ -1,8 +1,16 @@
 ---
 layout: "@bablr/starlight/components/MarkdownContent.astro"
-title: "Get help"
-highlighter: "./components/Bedazzlr.astro"
+title: "Learn"
 template: "splash"
+hero:
+  tagline: What can we help you with?
+  actions:
+
+    - text: Discover CSTML
+      link: /guides/cstml
+
+    - text: "...more coming soon"
+      link: "#"
 description: The homepage for BABLR documentation
 ---
 <!0:cstml>
