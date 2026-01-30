@@ -1,0 +1,9 @@
+---
+layout: "@bablr/starlight/components/MarkdownContent.astro"
+title: "Get help"
+highlighter: "./components/Bedazzlr.astro"
+template: "splash"
+description: The homepage for BABLR documentation
+---
+<!0:cstml>
+<_ />
