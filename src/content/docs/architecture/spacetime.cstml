@@ -30,7 +30,7 @@ title: Stream iterators
   </>
 
   <pre>
-    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6', 'bablr-prod': 'Program' }>
       "// The sync API must exist for callers in sync functions" "\n"
       "function* syncParse (chrs) {" "\n"
       "  for (let chr of chrs) {" "\n"
@@ -54,7 +54,7 @@ title: Stream iterators
   </>
 
   <pre>
-    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6', 'bablr-prod': 'Program' }>
       "async? function* streamParse (chrs) {" "\n"
       "  for await?(let chr of chrs) {" "\n"
       "    /* ...do parsing stuff */" "\n"
@@ -73,7 +73,7 @@ title: Stream iterators
   </>
 
   <pre>
-    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6', 'bablr-prod': 'Program' }>
       "import { streamify, wait } from '@bablr/stream-iterator';" "\n"
       "" "\n"
       "let streamParse = streamify(function* (chrs) {" "\n"
