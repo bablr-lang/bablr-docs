@@ -12,14 +12,26 @@ importers:
         specifier: ^9.1.3
         version: 9.5.2(astro@5.16.15(rollup@4.57.0)(typescript@5.9.3))
       '@bablr/agast-helpers':
+        specifier: 0.10.8
+        version: 0.10.8
+      '@bablr/agast-vm-helpers':
         specifier: 0.10.4
         version: 0.10.4
+      '@bablr/boot':
+        specifier: 0.11.3
+        version: 0.11.3
+      '@bablr/coroutine':
+        specifier: 0.1.0
+        version: 0.1.0
+      '@bablr/helpers':
+        specifier: 0.25.4
+        version: 0.25.4
       '@bablr/language-en-cstml':
         specifier: 0.12.5
         version: 0.12.5
       '@bablr/language-en-esnext':
-        specifier: 0.3.6
-        version: 0.3.6
+        specifier: 0.3.7
+        version: 0.3.7
       '@bablr/language-en-json':
         specifier: 0.13.3
         version: 0.13.3
@@ -30,8 +42,8 @@ importers:
         specifier: ^5.7.0
         version: 5.16.15(rollup@4.57.0)(typescript@5.9.3)
       bedazzlr:
-        specifier: 0.2.4
-        version: 0.2.4
+        specifier: 0.2.6
+        version: 0.2.6
       find-up:
         specifier: 8.0.0
         version: 8.0.0
@@ -101,11 +113,11 @@ packages:
   '@bablr/agast-helpers@0.10.6':
     resolution: {integrity: sha512-2+6AnxWiXxTbRb/XSZ2u+jc50jOqlaVq/xkc7mRxLMzP/1oSnNJcsFF4PPMxveAufuYghw6hf6mFnebWrauvrQ==}
 
+  '@bablr/agast-helpers@0.10.8':
+    resolution: {integrity: sha512-ZIfuCIonhyz92k8qCAUd09UucxcNWjHX1DS5EredJVyUG5zFPNrb+TlDqEfOz6LHzhRLopldgEfHKkeU1uvxIw==}
+
   '@bablr/agast-vm-helpers@0.10.4':
     resolution: {integrity: sha512-PYFjciIxkNLRUsYuiHfsg/I67JHX0h18W1/v9fFwcubqhGSwAZMrJWvH0qwjgpNT5yvMGtKuTCJ+9Xu8kvu2OA==}
-
-  '@bablr/agast-vm@0.11.2':
-    resolution: {integrity: sha512-eT6YQHaupdBhNpp3bYhINveBlmnqvjSIGdd2jgfnbKKRfugn14fpEuvCP51H2fhVfcCAgBKsgMJ0BMvRyJhNnQ==}
 
   '@bablr/agast-vm@0.11.4':
     resolution: {integrity: sha512-FypbR6IMZXnElspFK9ON/AEEUZ1nU/dp8FuzXzoobKwetlw4QWkfsWB6Td8P3l9oBHRaiH6gKjVqBDIZgnsWLA==}
@@ -113,17 +125,14 @@ packages:
   '@bablr/astro_integration-cstml@0.2.11':
     resolution: {integrity: sha512-Zk7wDEtQkmITw8Fi44DTUaR9evxbQlwnnNgQyNBxEwHTb6J7HR11JRCCWchyrAsqwsim8Ww+/U5R27cFB9Fr7g==}
 
-  '@bablr/bablr-vm-strategy-parse@0.11.3':
-    resolution: {integrity: sha512-4JRkTmqMTfwnR8wnxBrKaGGCLvPFoGA6u7x1yyK1ySfRS9ZfaYNf8v8fE88HgABY6QgwaKe7OYs64dqZrB4UfA==}
-
   '@bablr/bablr-vm-strategy-parse@0.11.5':
     resolution: {integrity: sha512-ExgCbfrycXAAoP9E68lDlRN3rBqL0PQcd/EfJYVSZ6/59Y84DLcTtwJlY9rGmvP4FaYgMFGOzqUmSrGIEhL0Hg==}
 
-  '@bablr/bablr-vm@0.23.3':
-    resolution: {integrity: sha512-bHgTR20MJV3YJ/IA7qfnjAqyAgcqBtyUvD+xflTAYpt+tMYwzbHNOqabyPdEBMe20kYAcxkHQojPYxzSx+f8rg==}
-
   '@bablr/bablr-vm@0.23.7':
     resolution: {integrity: sha512-vtKKv8MRGR49RxRPXj1okMwGEzH20K+SrgwgVRnNPqtfXJr+vWpP87LX2CGR/gWAuU1BtW6bfpkdvHQVcCAxhw==}
+
+  '@bablr/bablr-vm@0.23.8':
+    resolution: {integrity: sha512-GnwxHe39yPsjpkUGs3jBmFlClYl8fYn+ynLca/bz5AoNOGI00LqxktXCsTcVdZHGTH7UiAel136ZhZSQxrvO6g==}
 
   '@bablr/boot@0.11.3':
     resolution: {integrity: sha512-9Pu0EaOBTmL5UIkfmJ0kxf9+UTv9peLxe06DI6OFPbMBrO+Jd5SIqbq44fw/MvtP4la42EQkcmKDeoG014kVsQ==}
@@ -164,24 +173,32 @@ packages:
     resolution: {integrity: sha512-FWvSyS+5wxHxXQIEh5+W4hOtmxXkjl9TJM2thHb56j4PjVFtLEgmAK4EtlCWhUWifCQs6SQnvXbOVxg0uRXvZw==}
     engines: {node: '>=12.0.0'}
 
+  '@bablr/language-en-es3@0.3.6':
+    resolution: {integrity: sha512-AC+mIOjLN74DoJy4Au3DABaHer3MwdsTxcMwJn0wcNOPfmIHdzLz84XcGSWT+HbyQb6GmkPZbsgex43nUw9NLw==}
+    engines: {node: '>=12.0.0'}
+
   '@bablr/language-en-es5@0.3.5':
     resolution: {integrity: sha512-xGTKE2GIEAsco5kUrtD4q5qppSruSJeeXblVN2Ux9g5b6MkLhKgLwZ9cv8HEW6u/eJLvMof24g3BlXx4DKTEDw==}
+    engines: {node: '>=12.0.0'}
+
+  '@bablr/language-en-es5@0.3.6':
+    resolution: {integrity: sha512-+bot7klUtQKoTQ4FC/u40gKWGA83iTrAoDavIYuS0iKVdvQsjPAnJyHQvXBsJ+lipvaFqcwa/weeMvo1UohQhw==}
     engines: {node: '>=12.0.0'}
 
   '@bablr/language-en-es6@0.3.5':
     resolution: {integrity: sha512-G3GGo/PCQ4LmsgfLSqorQaRmNe/rWR3DMUB8IbNdXBMu57f3TiKV77mIihoLJTgL8VlwYmBh++wm1vb+wFJUxQ==}
     engines: {node: '>=12.0.0'}
 
-  '@bablr/language-en-es6@0.3.6':
-    resolution: {integrity: sha512-bMmWb+qxHGul9TMEdyzGyZHajmvTk52sQ/eIw6MIwT8zsSxuJWJPrJ79GK/g9UXgoVMxfO1kk3r3ob+Dbh3I6w==}
+  '@bablr/language-en-es6@0.3.7':
+    resolution: {integrity: sha512-/RfYm0YfJKo4as7AZrKm5z4mKULEsl2NkCHWoclTUDOocwQivrx7QY3r2GS+dB7JAdx5HzBNlX3Q8lXrtNig4g==}
     engines: {node: '>=12.0.0'}
 
   '@bablr/language-en-esnext@0.3.5':
     resolution: {integrity: sha512-8UO3nJEEz6m3cw+yjjBawjrBkeSKsRRcOjiNypO//E7KcMtxQ8a37ihrodC+8/88tIJ5qhpPPp8fX3yAsPdVNQ==}
     engines: {node: '>=12.0.0'}
 
-  '@bablr/language-en-esnext@0.3.6':
-    resolution: {integrity: sha512-tlFmdDk8zgGWBijIGy3w4Co6oyHO01G2ocVS6tMNXWHmQK2OlEIFRxTB6WTd6Dcuzcx4GNnZWNs9+8FKFMrxEg==}
+  '@bablr/language-en-esnext@0.3.7':
+    resolution: {integrity: sha512-x18mBzCyLCXIqIBcQbrILl07pmckjJExZHxXOiAsJsKZrcz3an23SGdtF86lrQ584JjLxf87v3vatTTsKwCHPQ==}
     engines: {node: '>=12.0.0'}
 
   '@bablr/language-en-json@0.13.3':
@@ -943,11 +960,11 @@ packages:
       react-native-b4a:
         optional: true
 
-  bablr@0.11.3:
-    resolution: {integrity: sha512-cfURkj5eaPOnBlbksLjXVy39xRBxiDxcIIwTg5kP/gv46jvDuCWJYqK1wGPwB+MQbTSpZnepDeBzDGWHRnekVw==}
-
   bablr@0.11.7:
     resolution: {integrity: sha512-V3rjBwfvNsl/FqEfBigs0XL5ITgA8GZvTrFa5aOKJZBK1H2rhOLEGIUchm7AQ3N2T0HXt8WlfwBiPLofQBE3gA==}
+
+  bablr@0.11.9:
+    resolution: {integrity: sha512-6+18QcxRLmO1D05sEX9elDSC1wvSVYJkjgdCDBYxwOrcjWnIwuJ/WjsIO2hLTJRbDmvyz7r63jPCNsstV955Ug==}
 
   bail@2.0.2:
     resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}
@@ -1002,8 +1019,8 @@ packages:
   bcp-47@2.1.0:
     resolution: {integrity: sha512-9IIS3UPrvIa1Ej+lVDdDwO7zLehjqsaByECw0bu2RRGP73jALm6FYbzI5gWbgHLvNdkvfXB5YrSbocZdOS0c0w==}
 
-  bedazzlr@0.2.4:
-    resolution: {integrity: sha512-ZfebnaWS7nyzIAKRWW6htAgzXIMrFt7MGttZg2Xu/6kZXmM3rLiky+G3hAdE8ym8EupVbM1XqFLGnQg+KksKsw==}
+  bedazzlr@0.2.6:
+    resolution: {integrity: sha512-RShTnDBiAKAZyDQHVORzHlyxBO6xNB5GnXclnbvCigcHXm+cyysIU3uD7eClzsMl0bVL0eV5eQcOqW709VQxyQ==}
 
   bl@4.1.0:
     resolution: {integrity: sha512-1W07cM9gS6DcLperZfFSj+bWLtaPGSOHWhPiGzXmvVJbRLdG82sH/Kn8EtW1VqWVA54AKf2h5k5BbnIbwF3h6w==}
@@ -2378,15 +2395,17 @@ snapshots:
       '@bablr/stream-iterator': 2.0.0
       '@iter-tools/imm-stack': 1.2.0
 
+  '@bablr/agast-helpers@0.10.8':
+    dependencies:
+      '@bablr/btree': 0.4.4
+      '@bablr/coroutine': 0.1.0
+      '@bablr/stream-iterator': 2.0.0
+      '@iter-tools/imm-stack': 1.2.0
+
   '@bablr/agast-vm-helpers@0.10.4':
     dependencies:
       '@bablr/agast-helpers': 0.10.4
       '@bablr/coroutine': 0.1.0
-
-  '@bablr/agast-vm@0.11.2':
-    dependencies:
-      '@bablr/agast-helpers': 0.10.4
-      '@bablr/agast-vm-helpers': 0.10.4
 
   '@bablr/agast-vm@0.11.4':
     dependencies:
@@ -2397,14 +2416,6 @@ snapshots:
     dependencies:
       '@bablr/vite_plugin-cstml-to-jsx': 0.2.9
 
-  '@bablr/bablr-vm-strategy-parse@0.11.3':
-    dependencies:
-      '@bablr/agast-helpers': 0.10.4
-      '@bablr/agast-vm-helpers': 0.10.4
-      '@bablr/coroutine': 0.1.0
-      '@bablr/helpers': 0.25.2
-      '@iter-tools/imm-stack': 1.2.0
-
   '@bablr/bablr-vm-strategy-parse@0.11.5':
     dependencies:
       '@bablr/agast-helpers': 0.10.6
@@ -2413,19 +2424,19 @@ snapshots:
       '@bablr/helpers': 0.25.2
       '@iter-tools/imm-stack': 1.2.0
 
-  '@bablr/bablr-vm@0.23.3':
+  '@bablr/bablr-vm@0.23.7':
     dependencies:
       '@bablr/agast-helpers': 0.10.4
-      '@bablr/agast-vm': 0.11.2
+      '@bablr/agast-vm': 0.11.4
       '@bablr/agast-vm-helpers': 0.10.4
       '@bablr/coroutine': 0.1.0
-      '@bablr/helpers': 0.25.2
+      '@bablr/helpers': 0.25.4
       '@bablr/regex-vm': 0.14.2
       '@bablr/stream-iterator': 2.0.0
       '@iter-tools/imm-stack': 1.2.0
       iter-tools-es: 7.5.3
 
-  '@bablr/bablr-vm@0.23.7':
+  '@bablr/bablr-vm@0.23.8':
     dependencies:
       '@bablr/agast-helpers': 0.10.4
       '@bablr/agast-vm': 0.11.4
@@ -2521,6 +2532,15 @@ snapshots:
       '@bablr/language-en-blank-space': 0.10.12
       '@bablr/language-en-c-comments': 0.10.2
 
+  '@bablr/language-en-es3@0.3.6':
+    dependencies:
+      '@bablr/agast-helpers': 0.10.4
+      '@bablr/agast-vm-helpers': 0.10.4
+      '@bablr/boot': 0.11.3
+      '@bablr/helpers': 0.25.3
+      '@bablr/language-en-blank-space': 0.10.12
+      '@bablr/language-en-c-comments': 0.10.2
+
   '@bablr/language-en-es5@0.3.5':
     dependencies:
       '@bablr/agast-helpers': 0.10.4
@@ -2531,6 +2551,17 @@ snapshots:
       '@bablr/language-en-blank-space': 0.10.12
       '@bablr/language-en-c-comments': 0.10.2
       '@bablr/language-en-es3': 0.3.5
+
+  '@bablr/language-en-es5@0.3.6':
+    dependencies:
+      '@bablr/agast-helpers': 0.10.4
+      '@bablr/agast-vm-helpers': 0.10.4
+      '@bablr/boot': 0.11.3
+      '@bablr/coroutine': 0.1.0
+      '@bablr/helpers': 0.25.3
+      '@bablr/language-en-blank-space': 0.10.12
+      '@bablr/language-en-c-comments': 0.10.2
+      '@bablr/language-en-es3': 0.3.6
 
   '@bablr/language-en-es6@0.3.5':
     dependencies:
@@ -2544,7 +2575,7 @@ snapshots:
       '@bablr/language-en-c-comments': 0.10.2
       '@bablr/language-en-es5': 0.3.5
 
-  '@bablr/language-en-es6@0.3.6':
+  '@bablr/language-en-es6@0.3.7':
     dependencies:
       '@babel/runtime': 7.24.6
       '@bablr/agast-helpers': 0.10.4
@@ -2554,7 +2585,7 @@ snapshots:
       '@bablr/helpers': 0.25.3
       '@bablr/language-en-blank-space': 0.10.12
       '@bablr/language-en-c-comments': 0.10.2
-      '@bablr/language-en-es5': 0.3.5
+      '@bablr/language-en-es5': 0.3.6
 
   '@bablr/language-en-esnext@0.3.5':
     dependencies:
@@ -2566,7 +2597,7 @@ snapshots:
       '@bablr/language-en-c-comments': 0.10.2
       '@bablr/language-en-es6': 0.3.5
 
-  '@bablr/language-en-esnext@0.3.6':
+  '@bablr/language-en-esnext@0.3.7':
     dependencies:
       '@bablr/agast-helpers': 0.10.4
       '@bablr/agast-vm-helpers': 0.10.4
@@ -2575,7 +2606,7 @@ snapshots:
       '@bablr/helpers': 0.25.3
       '@bablr/language-en-blank-space': 0.10.12
       '@bablr/language-en-c-comments': 0.10.2
-      '@bablr/language-en-es6': 0.3.6
+      '@bablr/language-en-es6': 0.3.7
 
   '@bablr/language-en-json@0.13.3':
     dependencies:
@@ -3248,20 +3279,19 @@ snapshots:
 
   b4a@1.7.3: {}
 
-  bablr@0.11.3:
-    dependencies:
-      '@bablr/agast-helpers': 0.10.4
-      '@bablr/agast-vm': 0.11.2
-      '@bablr/agast-vm-helpers': 0.10.4
-      '@bablr/bablr-vm': 0.23.3
-      '@bablr/bablr-vm-strategy-parse': 0.11.3
-      '@bablr/helpers': 0.25.2
-
   bablr@0.11.7:
     dependencies:
       '@bablr/agast-helpers': 0.10.4
       '@bablr/agast-vm-helpers': 0.10.4
       '@bablr/bablr-vm': 0.23.7
+      '@bablr/bablr-vm-strategy-parse': 0.11.5
+      '@bablr/helpers': 0.25.2
+
+  bablr@0.11.9:
+    dependencies:
+      '@bablr/agast-helpers': 0.10.8
+      '@bablr/agast-vm-helpers': 0.10.4
+      '@bablr/bablr-vm': 0.23.8
       '@bablr/bablr-vm-strategy-parse': 0.11.5
       '@bablr/helpers': 0.25.2
 
@@ -3316,14 +3346,14 @@ snapshots:
       is-alphanumerical: 2.0.1
       is-decimal: 2.0.1
 
-  bedazzlr@0.2.4:
+  bedazzlr@0.2.6:
     dependencies:
       '@bablr/agast-helpers': 0.10.4
       '@bablr/agast-vm-helpers': 0.10.4
       '@bablr/boot': 0.11.3
       '@bablr/helpers': 0.25.2
       '@iter-tools/imm-stack': 1.2.0
-      bablr: 0.11.3
+      bablr: 0.11.9
       classnames: 2.5.1
 
   bl@4.1.0:
