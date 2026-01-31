@@ -18,8 +18,8 @@ importers:
         specifier: 0.12.5
         version: 0.12.5
       '@bablr/language-en-esnext':
-        specifier: 0.3.5
-        version: 0.3.5
+        specifier: 0.3.6
+        version: 0.3.6
       '@bablr/language-en-json':
         specifier: 0.13.3
         version: 0.13.3
@@ -172,8 +172,16 @@ packages:
     resolution: {integrity: sha512-G3GGo/PCQ4LmsgfLSqorQaRmNe/rWR3DMUB8IbNdXBMu57f3TiKV77mIihoLJTgL8VlwYmBh++wm1vb+wFJUxQ==}
     engines: {node: '>=12.0.0'}
 
+  '@bablr/language-en-es6@0.3.6':
+    resolution: {integrity: sha512-bMmWb+qxHGul9TMEdyzGyZHajmvTk52sQ/eIw6MIwT8zsSxuJWJPrJ79GK/g9UXgoVMxfO1kk3r3ob+Dbh3I6w==}
+    engines: {node: '>=12.0.0'}
+
   '@bablr/language-en-esnext@0.3.5':
     resolution: {integrity: sha512-8UO3nJEEz6m3cw+yjjBawjrBkeSKsRRcOjiNypO//E7KcMtxQ8a37ihrodC+8/88tIJ5qhpPPp8fX3yAsPdVNQ==}
+    engines: {node: '>=12.0.0'}
+
+  '@bablr/language-en-esnext@0.3.6':
+    resolution: {integrity: sha512-tlFmdDk8zgGWBijIGy3w4Co6oyHO01G2ocVS6tMNXWHmQK2OlEIFRxTB6WTd6Dcuzcx4GNnZWNs9+8FKFMrxEg==}
     engines: {node: '>=12.0.0'}
 
   '@bablr/language-en-json@0.13.3':
@@ -2536,6 +2544,18 @@ snapshots:
       '@bablr/language-en-c-comments': 0.10.2
       '@bablr/language-en-es5': 0.3.5
 
+  '@bablr/language-en-es6@0.3.6':
+    dependencies:
+      '@babel/runtime': 7.24.6
+      '@bablr/agast-helpers': 0.10.4
+      '@bablr/agast-vm-helpers': 0.10.4
+      '@bablr/boot': 0.11.3
+      '@bablr/coroutine': 0.1.0
+      '@bablr/helpers': 0.25.3
+      '@bablr/language-en-blank-space': 0.10.12
+      '@bablr/language-en-c-comments': 0.10.2
+      '@bablr/language-en-es5': 0.3.5
+
   '@bablr/language-en-esnext@0.3.5':
     dependencies:
       '@bablr/agast-helpers': 0.10.4
@@ -2545,6 +2565,17 @@ snapshots:
       '@bablr/language-en-blank-space': 0.10.12
       '@bablr/language-en-c-comments': 0.10.2
       '@bablr/language-en-es6': 0.3.5
+
+  '@bablr/language-en-esnext@0.3.6':
+    dependencies:
+      '@bablr/agast-helpers': 0.10.4
+      '@bablr/agast-vm-helpers': 0.10.4
+      '@bablr/boot': 0.11.3
+      '@bablr/coroutine': 0.1.0
+      '@bablr/helpers': 0.25.3
+      '@bablr/language-en-blank-space': 0.10.12
+      '@bablr/language-en-c-comments': 0.10.2
+      '@bablr/language-en-es6': 0.3.6
 
   '@bablr/language-en-json@0.13.3':
     dependencies:
