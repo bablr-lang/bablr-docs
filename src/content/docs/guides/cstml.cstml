@@ -105,7 +105,7 @@ title: "Intro to CSTML"
     <code 'verb:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
     " and "
     <code 'object:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
-    " to help highlight the internal syntactic structure of our sentence:"
+    "(and a few others) to help highlight the internal syntactic structure of our sentence:"
   </>
 
   <pre>
@@ -139,20 +139,69 @@ title: "Intro to CSTML"
     </>
   </>
 
+
   <p>
-    "We also used the "
+    "In this example "
+    <code 'subject:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
+    ", "
+    <code 'object:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
+    " and "
+    <code 'kind:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
+    " are what are known as references, or reference tags. The "
     <code 'modifier[]:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
-    " reference in this example. Here "
+    " reference uses "
     <code '[]' />
-    " tells us that there may be more than one of these and that together they form a list."
+    " (array braces) to indicate that more modifiers may follow and that together they form a list."
+  </>
+
+  <h2 'Tokens' />
+
+  <p>
+    "Since CSTML is a system for adding metadata to text, we want to make sure that all text can have metadata attached to it. For that reason we consider all strings that aren't explicitly wrapped in a \"token node\" to be implicitly wrapped in one. A token node is denoted with "
+    <code '*' />
+    ", the token flag. Thus if you have the document "
+    <code '"Hello world!"' />
+    " you should consider it to be short for: "
+  </>
+
+  <pre>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
+      '<* "Hello world!" />'
+    </>
+  </>
+
+  <p>
+    "The expansion helps you see that there really is a place to put attributes, even on strings. We just collapse it down when there are no attributes to remove visual clutter and make documents easier to read and write."
+  </>
+
+  <p>
+    "This means that in the previous sections when we wrote "
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
+      '<Verb "jumped" />'
+    </>
+    " we now understand that this expands to "
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
+      '<Verb> <* "jumped" /> </>'
+    </>
+    "."
+  </>
+
+  <p>
+    "Now the purpose of the " <code '*' /> " flag becomes more clear: it lets us make a document that is a single node again:"
+  </>
+
+  <pre>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
+      '<*Verb "jumped" />'
+    </>
   </>
   
   <h2 "Gaps" />
 
   <p>
-    "One of the most interesting features of CSTML documents is that they're permitted to have gaps in them. A gap is a place where some content is known to be missing. Gaps allow a document to be a template, like form you fill out or a mad-lib. A gap tag is represented in a CSTML document as "
-
+    "One of the most interesting features of CSTML documents is that they're permitted to have gaps in them. A gap is a place where some content is known to be missing. Gaps allow a document to be a template, like form you fill out or an image with a transparent background. A gap tag is represented in a CSTML document as "
     <code '<//>' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
+    ", like this:"
   </>
 
   <pre>
@@ -165,17 +214,11 @@ title: "Intro to CSTML"
   </>
 
   <p>
-    "In this example you may also have noticed the "
-    <code '$' />
-    " in "
-    <code '$NameBadge' />
-    ". This is called the \"template flag\" because it indicates that parts of this document may be missing -- that there may be gaps."
+    "In this example you may also have noticed the " <code '$' /> " in " <code '$NameBadge' />". This is called the \"template flag\" because it indicates that parts of this document may be missing -- that there may be gaps."
   </>
 
   <p>
-    "Gaps are particularly useful when working to describe the state of a code editor as the user is editing code. For example in Javascript as one step in performing a code edit I may want to insert an empty if statement. An empty if statement in Javascript looks like this: "
-      <code 'if()' />
-    ". But that also isn't valid Javascript syntax! If you type that in a Javascript file in your IDE you'll get red squigglies. But gaps give us the tools we need to ... ..."
+    "Gaps are particularly useful when describing code documents. A code document with a gap in it is a usually referred to as a \"code snippet\" or simply \"a template\". There are many systems which use template syntax to define code snippets, but these systems invetitably have conflicts between the syntax of the templating language and the syntax of the content being templated. By tracking gaps without needing any syntax, CSTML creates a universally-applicable system for snippets and partial code documents."
   </>
 
   <h2 'Shifting' />

@@ -42,10 +42,10 @@ export default defineConfig({
         //   label: 'Reference',
         //   autogenerate: { directory: 'reference' },
         // },
-        // {
-        //   label: "Architecture",
-        //   autogenerate: { directory: "architecture" },
-        // },
+        {
+          label: "Architecture",
+          autogenerate: { directory: "architecture" },
+        },
       ],
     }),
   ],

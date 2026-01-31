@@ -16,7 +16,7 @@
     "bedazzlr": "0.2.4",
     "@bablr/language-en-cstml": "0.12.5",
     "@bablr/language-en-json": "0.13.3",
-    "@bablr/language-en-esnext": "0.3.5",
+    "@bablr/language-en-esnext": "0.3.6",
     "astro": "^5.7.0",
     "find-up": "8.0.0",
     "sharp": "^0.32.6"
