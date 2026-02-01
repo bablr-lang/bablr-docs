@@ -2,10 +2,10 @@
 <svg
    id="Layer_2"
    data-name="Layer 2"
-   viewBox="-4 -3 316.00001 115"
+   viewBox="-4 -3 344.00001 115"
    version="1.1"
    sodipodi:docname="BABLR_dark.svg"
-   width="316"
+   width="344"
    height="115"
    inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -24,14 +24,14 @@
      inkscape:pagecheckerboard="true"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="1.8637108"
-     inkscape:cx="88.264769"
-     inkscape:cy="43.998243"
+     inkscape:cx="222.40575"
+     inkscape:cy="52.583266"
      inkscape:window-width="1272"
      inkscape:window-height="711"
      inkscape:window-x="0"
      inkscape:window-y="30"
      inkscape:window-maximized="0"
-     inkscape:current-layer="Logo" />
+     inkscape:current-layer="Layer_2" />
   <g
      id="Logo">
     <g
@@ -83,6 +83,7 @@
   </g>
   <g
      id="BABLR"
+     transform="translate(26)"
      style="fill:#f2f2f2">
     <g
        id="g10"

@@ -1,3 +1,7 @@
+.site-title {
+  gap: 0.4em;
+}
+
 .site-title img {
   margin-bottom: -0.28em;
 }
