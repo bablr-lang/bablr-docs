@@ -10,7 +10,7 @@ title: Stream iterators
   </>
 
   <p>
-    "Iterators add a layer of indirection to data access, and in Javascript they have a performance cost. What they offer in return is an abstraction over how data is stored. You can write a method parse(chrs) which sees its input a sequence of characters without needing to say whether the characters are stored in a String or an Array or a Buffer, or even a rope as is used in text editors. Actually presenting an abstraction over in-memory data structures is a particularly easy problem: it only requires synchronous iteration."
+    "Iterators add a layer of indirection to data access, and in Javascript they have a performance cost. What they offer in return is an abstraction over how data is stored. You can write a method " <code "parse(chrs)" { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6' } /> " which sees its input a sequence of characters without needing to say whether the characters are stored in a " <code "String" /> " or an " <code "Array" /> " or a " <code "Buffer" /> ", perhaps even a rope as is used in text editors. Actually presenting an abstraction over in-memory data structures is a particularly easy problem: it only requires synchronous iteration."
   </>
 
   <p>
@@ -22,7 +22,7 @@ title: Stream iterators
   </>
     
   <p>
-    "Far from giving you an abstraction, Javascript instead makes sync and async iteration two completely separate concrete things. Not just the official advice but the community best practice is to literally write all your code twice: once using synchronous iterators and synchronous `for .. of` loops so that you have one implementation that's fast and can be called from inside synchronous execution environments. Then you're expected to maintain a complete second copy of your code which uses `async function` and `for await .. of` and asynchronous iterators. I hope I do not need to tell you that having to maintain two completely separate copies of your code is not what a successful abstraction looks like! Exactly the opposite: such a pronounced schism is what you expect to see if the attempt to make this distinction abstract has been unsuccessful."
+    "Far from giving you an abstraction, Javascript instead makes sync and async iteration two completely separate concrete things. Not just the official advice but the community best practice is to literally write all your code twice: once using synchronous iterators and synchronous " <code "for .. of" /> " loops so that you have one implementation that's fast and can be called from inside synchronous execution environments. Then you're expected to maintain a complete second copy of your code which uses " <code "async function" /> " and " <code "for await .. of" /> " and asynchronous iterators. I hope I do not need to tell you that having to maintain two completely separate copies of your code is not what a successful abstraction looks like! Exactly the opposite: such a pronounced schism is what you expect to see if the attempt to make this distinction abstract has been unsuccessful."
   </>
 
   <p>
@@ -32,7 +32,7 @@ title: Stream iterators
   <pre>
     <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6', 'bablr-prod': 'Program' }>
       "// The sync API must exist for callers in sync functions" "\n"
-      "function* syncParse (chrs) {" "\n"
+      "function* syncParse(chrs) {" "\n"
       "  for (let chr of chrs) {" "\n"
       "    /* ...do parsing stuff */" "\n"
       "    yield tag;" "\n"
@@ -40,7 +40,7 @@ title: Stream iterators
       "}" "\n"
       "\n"
       "// The async API must exist for when data is a network stream" "\n"
-      "async function* asyncParse (chrs) {" "\n"
+      "async function* asyncParse(chrs) {" "\n"
       "  for await(let chr of chrs) {" "\n"
       "    /* ...do parsing stuff */" "\n"
       "    yield tag;" "\n"
@@ -55,7 +55,7 @@ title: Stream iterators
 
   <pre>
     <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6', 'bablr-prod': 'Program' }>
-      "async? function* streamParse (chrs) {" "\n"
+      "async? function* streamParse(chrs) {" "\n"
       "  for await?(let chr of chrs) {" "\n"
       "    /* ...do parsing stuff */" "\n"
       "    yield tag;" "\n"
@@ -69,7 +69,7 @@ title: Stream iterators
   </>
 
   <p>
-    "Here's how we can write streamParse using currently-available tools:"
+    "Here's how we can write " <code "streamParse" /> " using currently-available tools:"
   </>
 
   <pre>

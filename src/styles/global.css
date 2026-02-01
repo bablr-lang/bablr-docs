@@ -1,7 +1,170 @@
 .site-title {
   gap: 0.4em;
+  margin-top: -0.17em;
 }
 
 .site-title img {
   margin-bottom: -0.28em;
+}
+
+:root[data-theme="dark"] {
+  pre {
+    background-color: var(--sl-color-bg-sidebar);
+  }
+
+  code node[name="String"] {
+    color: rgb(162, 207, 28);
+  }
+
+  code node[name="Keyword"] {
+    color: rgb(230, 89, 89);
+  }
+
+  code node[name="LineComment"],
+  code node[name="BlockComment"] {
+    color: rgb(127, 155, 155);
+  }
+}
+
+:root[data-theme="light"] {
+  code node[name="String"] {
+    color: green;
+  }
+
+  code node[name="Keyword"] {
+    color: darkred;
+  }
+
+  code node[name="LineComment"],
+  code node[name="BlockComment"] {
+    color: rgb(127, 155, 155);
+  }
+}
+
+code .hover {
+  width: 4px;
+  height: 4px;
+  background: red;
+}
+
+code node > a:first-of-type::before {
+  position: absolute;
+  content: " ";
+  width: 4px;
+  height: 4px;
+  background: red;
+}
+
+code
+  node.indent-depth-1
+  :nth-child(-n + 1 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-2
+  :nth-child(-n + 2 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-3
+  :nth-child(-n + 3 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-4
+  :nth-child(-n + 4 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-5
+  :nth-child(-n + 5 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-6
+  :nth-child(-n + 6 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-7
+  :nth-child(-n + 7 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-8
+  :nth-child(-n + 8 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-9
+  :nth-child(-n + 9 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-10
+  :nth-child(-n + 10 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-11
+  :nth-child(-n + 11 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-12
+  :nth-child(-n + 12 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-13
+  :nth-child(-n + 13 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-14
+  :nth-child(-n + 14 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-15
+  :nth-child(-n + 15 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+code
+  node.indent-depth-16
+  :nth-child(-n + 16 of node.token[name="Indent"])::selection {
+  background-color: transparent;
+}
+
+pre {
+  position: relative;
+  z-index: 0;
+}
+
+pre node.token[type="Newline"]::before {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  height: 1.5em;
+  width: 100%;
+  content: " ";
+}
+
+node > a > .tooltip {
+  text-wrap-mode: nowrap;
 }

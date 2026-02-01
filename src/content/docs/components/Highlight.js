@@ -1,14 +1,19 @@
-import { highlightAll } from 'bedazzlr';
-import { spam as m } from '@bablr/boot';
-import * as Spans from '@bablr/agast-helpers/spans';
-import { buildSpan } from '@bablr/agast-helpers/builders';
-import cstml from '@bablr/language-en-cstml';
-import esnext from '@bablr/language-en-esnext';
-import json from '@bablr/language-en-json';
-import { eatMatch, extendLanguage, getInstrMatcher } from '@bablr/helpers/grammar';
-import { Coroutine } from '@bablr/coroutine';
-import { reifyMatcherReferenceName } from '@bablr/agast-vm-helpers';
-import { triviaEnhancer } from '@bablr/helpers/trivia';
+import { highlightCode } from "bedazzlr";
+import { spam as m } from "@bablr/boot";
+import * as Spans from "@bablr/agast-helpers/spans";
+import { buildSpan } from "@bablr/agast-helpers/builders";
+import cstml from "@bablr/language-en-cstml";
+import esnext from "@bablr/language-en-esnext";
+import json from "@bablr/language-en-json";
+import {
+  eatMatch,
+  extendLanguage,
+  getInstrMatcher,
+} from "@bablr/helpers/grammar";
+import { Coroutine } from "@bablr/coroutine";
+import { reifyMatcherReferenceName } from "@bablr/agast-vm-helpers";
+import { triviaEnhancer } from "@bablr/helpers/trivia";
+import { onCleanup, onMount, children } from "solid-js";
 
 let runCo = (generator) => new Coroutine(generator).advance();
 
@@ -16,7 +21,7 @@ let proposalStreamIterator = (language) => {
   return extendLanguage(language, {
     grammar: triviaEnhancer(
       {
-        triviaIsAllowed: (s) => s.span.name === 'Bare',
+        triviaIsAllowed: (s) => s.span.name === "Bare",
         triviaMatcher: m`#: <__Trivia /[ \n\r\t]|\/\/|\/\*/ />`,
       },
       class Grammar extends language.grammar.atrivial {
@@ -27,7 +32,7 @@ let proposalStreamIterator = (language) => {
             let instr = co.value;
             let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
 
-            if (refName === 'asyncToken') {
+            if (refName === "asyncToken") {
               let async_ = yield instr;
               co.advance(async_);
               if (async_) {
@@ -46,7 +51,7 @@ let proposalStreamIterator = (language) => {
             let instr = co.value;
             let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
 
-            if (refName === 'asyncToken') {
+            if (refName === "asyncToken") {
               let async_ = yield instr;
               if (async_) {
                 yield eatMatch(m`optionalAsyncToken*: <* '?' />`);
@@ -65,7 +70,7 @@ let proposalStreamIterator = (language) => {
             let instr = co.value;
             let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
 
-            if (refName === 'awaitToken') {
+            if (refName === "awaitToken") {
               let await_ = yield instr;
               if (await_) {
                 yield eatMatch(m`optionalAwaitToken*: <* '?' />`);
@@ -93,12 +98,59 @@ let languages = new Map([
   [json.canonicalURL, json],
 ]);
 
-const Highlighter = () => {
-  return null;
-};
+const Highlighter = (props) => {
+  let iter;
+  let children_ = children(() => props.children)();
 
-highlightAll(languages, {
-  spans: Spans.fromValues([buildSpan('Trivia', null, { spaces: 2 })]),
-});
+  onMount(() => {
+    let language = languages.get(canonicalURL);
+    let block = children_;
+    debugger;
+    let flags = block.getAttribute("bablr-ref-flags");
+    let name = block.getAttribute("bablr-prod");
+
+    if (!language) return;
+    if (!name && !language.defaultMatcher) return;
+
+    iter = highlightCode(
+      block,
+      language,
+      name
+        ? buildEmbeddedMatcher(
+            buildPropertyMatcher(
+              buildReferenceMatcher("_", null, flags),
+              buildBoundNodeMatcher(
+                [],
+                buildTreeNodeMatcher(
+                  buildTreeNodeMatcherOpen(buildNodeFlags(), null, name),
+                ),
+              ),
+            ),
+          )
+        : language.defaultMatcher,
+      {
+        spans: Spans.fromValues([buildSpan("Trivia", null, { spaces: 2 })]),
+      },
+    );
+
+    let stepPromise = iter.next();
+
+    let callback = (step) => {
+      if (!step.done) {
+        stepPromise = iter.next();
+        stepPromise.then(callback);
+      }
+    };
+
+    stepPromise.then(callback);
+  });
+
+  onCleanup(() => {
+    stepPromise = null;
+    iter.return();
+  });
+
+  return <>{children_}</>;
+};
 
 export default Highlighter;

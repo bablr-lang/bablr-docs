@@ -36,8 +36,8 @@ importers:
         specifier: 0.13.3
         version: 0.13.3
       '@bablr/starlight':
-        specifier: ^0.32.11
-        version: 0.32.11(astro@5.16.15(rollup@4.57.0)(typescript@5.9.3))
+        specifier: ^0.32.12
+        version: 0.32.12(astro@5.16.15(rollup@4.57.0)(typescript@5.9.3))
       astro:
         specifier: ^5.7.0
         version: 5.16.15(rollup@4.57.0)(typescript@5.9.3)
@@ -219,8 +219,8 @@ packages:
     resolution: {integrity: sha512-ggwltKwpqkJKwUNREqjh8dTp7mpzaJsweYEDzl7xLwM/g3Iu6bqBhBGOhW6RTfpMOr95sIVOwaNxVTbzAzBFqA==}
     engines: {node: '>=12.0.0'}
 
-  '@bablr/starlight@0.32.11':
-    resolution: {integrity: sha512-9OLRQ1kMvavtBVI5pdsyItieLikQxW0j9lvF3kHQrTApQYWG9L7osCwbZu5ZqMnYxvWSDMs75wcZipZQZXrzTQ==}
+  '@bablr/starlight@0.32.12':
+    resolution: {integrity: sha512-JiRJTrdBpPhQwyylXppsdg37SOBjHi8ihOBOVW7Sge/CTjG9q0WU9W3jIIUXC9CXR/hsilFzsgf4QZvoc+Xdmg==}
     peerDependencies:
       astro: ^5.5.0
 
@@ -2641,7 +2641,7 @@ snapshots:
       '@iter-tools/imm-stack': 1.2.0
       functional-red-black-tree: 1.0.1
 
-  '@bablr/starlight@0.32.11(astro@5.16.15(rollup@4.57.0)(typescript@5.9.3))':
+  '@bablr/starlight@0.32.12(astro@5.16.15(rollup@4.57.0)(typescript@5.9.3))':
     dependencies:
       '@astrojs/sitemap': 3.7.0
       '@bablr/astro_integration-cstml': 0.2.11
