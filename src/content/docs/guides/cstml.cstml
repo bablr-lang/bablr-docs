@@ -353,7 +353,7 @@ title: "Intro to CSTML"
   </>
 
   <p>
-    "The key improvement over XML here is that the CSTML namespace names actually _mean something_. In XML the namespace name is only an alias for the namespace URL and is otherwise not used. In CSTML there are no namespace URLs, only namespace names."
+    "The key improvement over XML here is that the CSTML namespace names actually " <i "mean something" /> ". In XML the namespace name is only an alias for the namespace URL and is otherwise not used. In CSTML there are no namespace URLs, only namespace names."
   </>
 
   <p>
@@ -363,7 +363,7 @@ title: "Intro to CSTML"
   <p>
     "This is a crucial detail which informs the design. CSTML actually started out using a " <code '<Lang.Node />' /> " syntax like XML's but when we asked ourselves if " <code 'Lang.' /> " really belonged inside "
     <code '<Node />' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
-    " in a philosophical sense, we were forced to conclude that it did not: it isn't part of the _identity_ of `Node` at all!"
+    " in a philosophical sense, we were forced to conclude that it did not: it isn't part of the " <i "identity" /> " of " <code "Node" /> " at all!"
   </>
 
   <p>
@@ -395,11 +395,11 @@ title: "Intro to CSTML"
   <p>
     "You can join multiple names within a single binding tag with " <code '/' /> ". For example you might write "
     <code ':Foo/Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
-    " to get _almost_ the same effect as "
+    " to get " <i "almost" /> " the same effect as "
     <code ':Foo: :Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Stream' } />
-    ". But it is not _quite_ the same because "
+    ". But it is not " <i "quite" /> " the same because "
     <code ':Foo/Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
-    " is _all one binding tag_ while "
+    " is " <i "all one binding tag" /> " while "
     <code ':Foo: :Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Stream' } />
     " is two binding tags. This means that thanks to our clever definition of "
     <code ':..:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
