@@ -56,7 +56,7 @@ title: Stream iterators
   <pre>
     <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6', 'bablr-prod': 'Program' }>
       "async? function* streamParse(chrs) {" "\n"
-      "  for await?(let chr of chrs) {" "\n"
+      "  for await? (let chr of chrs) {" "\n"
       "    /* ...do parsing stuff */" "\n"
       "    yield tag;" "\n"
       "  }" "\n"

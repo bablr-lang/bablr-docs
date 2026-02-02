@@ -411,4 +411,26 @@ title: "Intro to CSTML"
     <code ':Foo: :Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Stream' } />
     "."
   </>
+
+  <h2 'Parsing' />
+
+  <p>
+    "Most proposed data interchange formats fail to gain traction. This is because the value of such a format is determined by who else is using it -- who you can use it to communicate with. Normally this would be the most massive obstacle facing a new data language like CSTML. It probably still is for us, but we do have a trick up our sleeve! CSTML is an ideal format to represent the work done by a parser. CSTML uses tags to separate a document into a hierarchy of spans; Parse trees use nodes to separate a document into a hierarchy of spans. Any text file containing parseable code is a CSTML document waiting to happen! This is why we've designed BABLR to be the most flexible, powerful parser system we know of: writing a CSTML-emitting parser for a single programming language might gain us anywhere from tens of thousands to hundreds of millions of new  documents compatible with our tools depending on the popularity of the language."
+  </>
+
+  <p>
+    "Making CSTML a parser-driven data language allows its community to trade the challenge of needing people to help write an initial corpus of documents for the challenge of needing people to help write an initial family of parsers. Because this challenge will make or break CSTML, great care has been taken to shape the conditions until they are favorable to the desired outcome. Potential adopters will be weighing the benefits against the costs, so we've optimized both."
+  </>
+    
+  <p>
+    "We've reduced the costs of adoption by making it as easy as possible to write parsers: powerful APIs, no compile step, lots of help from the JS debugger and our logging tools. Once you've decided to do the work we also make it as valuable as possible: the list of things you can use a CSTML document for go on and on: we've used BABLR parsers on this web page to syntax highlight our code examples and provide the ability to explore the underlying parse trees in place. You can use CSTML for structural code search so that it is no longer necessary to dumb syntax down to for \"greppability\". You can even use CSTML to refactor entire codebases: load your whole codebase into a CSTML document and our immutable agAST trees make it easy to define and execute semantically-driven changes that touch tens, hundreds, or thousands of files. That we've wedded a refactoring tool to such a powerful system of grammars ensures that you won't be forced to leave your most trusted tools behind when you want them most: when working with unfamiliar or uncommon programming languages."
+  </>
+
+  <p>
+    "CSTML even unlocks some proper sci-fi futurism: we foresee a future in which code editing is accessible to many, many more people and can be done on more kinds of devices like touchscreen tablets and even VR headsets. Where current code editors are designed to emulate the experience of sitting at a typewriter writing code on paper, our goal is to make coding feel more like snapping together Lego bricks. While the concept of logic-brick editing is not new and projects like " <a "Scratch" { href: 'https://scratch.mit.edu/' } /> " have been quite successful, past environments for brick coding have tried to avoid syntax, while we see every reason to embrace it. While snapping bricks together is an ideal UX for writing code, reading syntactic symbols is and will always be the most efficient way for humans to read code. CSTML lets us have the best of both worlds: succinct syntax as essential to professional work, but with complete syntax documents being built up from syntax bricks which even a complete novice can learn about by playing with; by seeing how the bricks snap together."
+  </>
+    
+  <p>
+    "Can you imagine a future where nobody ever needs to spend their time hunting down a misplaced close paren -- yet again? I can!"
+  </>
 </>
