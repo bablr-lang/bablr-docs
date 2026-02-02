@@ -74,7 +74,9 @@ title: "Intro to CSTML"
 
   <pre>
     <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
-      '<Verb { tense: "past", unicode: { graphemes: 6 } }> "jumped" </>' "\n"
+      '<Verb { tense: "past", unicode: { graphemes: 6 } }>'
+      '   "jumped"' "\n"
+      '</>' "\n"
     </>
   </>
 
