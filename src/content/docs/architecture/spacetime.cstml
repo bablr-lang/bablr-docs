@@ -65,7 +65,7 @@ title: Stream iterators
   </>
 
   <p>
-    "While we can't really use this async? syntax yet, Javascript already makes it possible to write code which works this way: code which is sync when it can be and async when it needs to be. By preserving the syncness of the input and output when it is possible to do so, we allow ourselves to write one parse function that serves all needs. When the input is a string you're able to get a parse result syncronously. When the input is a network stream, some waiting will occur as necessary."
+    "While we can't really use this " <code "async?" /> " syntax yet, Javascript already makes it possible to write code which works this way: code which is sync when it can be and async when it needs to be. By preserving the syncness of the input and output when it is possible to do so, we allow ourselves to write one parse function that serves all needs. When the input is a string you're able to get a parse result syncronously. When the input is a network stream, some waiting will occur as necessary."
   </>
 
   <p>

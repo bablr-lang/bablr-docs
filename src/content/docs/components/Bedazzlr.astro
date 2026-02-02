@@ -1,4 +1,6 @@
 ---
 import Highlighter from './Highlight.js';
 ---
-<Highlighter client="solid-js"> </>
+<Highlighter client:only="solid-js">
+  <slot slot="fallback" />
+</>

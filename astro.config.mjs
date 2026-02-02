@@ -1,60 +1,64 @@
-import { defineConfig } from "astro/config";
-import starlight from "@bablr/starlight";
-import { findUpMultipleSync as findUp } from "find-up";
-import { dirname } from "node:path";
+import { defineConfig } from 'astro/config';
+import starlight from '@bablr/starlight';
+import { findUpMultipleSync as findUp } from 'find-up';
+import { dirname } from 'node:path';
 
-import node from "@astrojs/node";
+import node from '@astrojs/node';
+import solidJs from '@astrojs/solid-js';
 
-let gitRoots = findUp(".git", { cwd: import.meta.url, type: "directory" });
+let gitRoots = findUp('.git', { cwd: import.meta.url, type: 'directory' });
 
 // https://astro.build/config
 export default defineConfig({
   i18n: {
     prefixDefaultLocale: false,
-    locales: ["en"],
-    defaultLocale: "en",
+    locales: ['en'],
+    defaultLocale: 'en',
   },
 
   integrations: [
     starlight({
-      title: "Docs",
+      title: 'Docs',
       logo: {
-        light: "./src/images/BABLR.svg",
-        dark: "./src/images/BABLR_dark.svg",
+        light: './src/images/BABLR.svg',
+        dark: './src/images/BABLR_dark.svg',
       },
       prerender: true,
-      favicon: "/favicon.ico",
+      favicon: '/favicon.ico',
       social: [
         {
-          icon: "github",
-          label: "GitHub",
-          href: "https://github.com/bablr-lang/",
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/bablr-lang/',
         },
         {
-          icon: "discord",
-          label: "Discord",
-          href: "https://discord.gg/NfMNyYN6cX",
+          icon: 'discord',
+          label: 'Discord',
+          href: 'https://discord.gg/NfMNyYN6cX',
         },
       ],
       sidebar: [
         {
-          label: "Guides",
-          autogenerate: { directory: "guides" },
+          label: 'Guides',
+          autogenerate: { directory: 'guides' },
         },
         // {
         //   label: 'Reference',
         //   autogenerate: { directory: 'reference' },
         // },
         {
-          label: "Architecture",
-          autogenerate: { directory: "architecture" },
+          label: 'Architecture',
+          autogenerate: { directory: 'architecture' },
         },
         {
-          label: "Philosophy",
-          autogenerate: { directory: "philosophy" },
+          label: 'Philosophy',
+          autogenerate: { directory: 'philosophy' },
         },
       ],
-      customCss: ["./src/styles/global.css"],
+      customCss: ['./src/styles/global.css'],
+    }),
+    solidJs({
+      include: ['**/solid/*'],
     }),
   ],
   server: { port: 4321 },
@@ -63,8 +67,8 @@ export default defineConfig({
       fs: { allow: gitRoots && [dirname(gitRoots[gitRoots.length - 1])] },
     },
   },
-  site: "https://build.bablr.org",
+  site: 'https://build.bablr.org',
   adapter: node({
-    mode: "standalone",
+    mode: 'standalone',
   }),
 });
