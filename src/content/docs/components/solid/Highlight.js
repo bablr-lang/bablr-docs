@@ -6,6 +6,7 @@ import cstml from "@bablr/language-en-cstml";
 import esnext from "@bablr/language-en-esnext";
 import json from "@bablr/language-en-json";
 import {
+  eat,
   eatMatch,
   extendLanguage,
   getInstrMatcher,

@@ -31,6 +31,7 @@ title: Stream iterators
 
   <pre>
     <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6', 'bablr-prod': 'Program' }>
+      "let tags, input;" "\n"
       "// The sync API must exist for callers in sync functions" "\n"
       "function* syncParse(chrs) {" "\n"
       "  for (let chr of chrs) {" "\n"
@@ -38,6 +39,8 @@ title: Stream iterators
       "    yield tag;" "\n"
       "  }" "\n"
       "}" "\n"
+      "input = 'chrs';" "\n"
+      "tags = Array.from(syncParse(input));" "\n"
       "\n"
       "// The async API must exist for when data is a network stream" "\n"
       "async function* asyncParse(chrs) {" "\n"
@@ -46,6 +49,8 @@ title: Stream iterators
       "    yield tag;" "\n"
       "  }" "\n"
       "}" "\n"
+      "input = readFile('./fixture', 'utf8');" "\n"
+      "tags = await Array.fromAsync(asyncParse(input));" "\n"
     </>
   </>
 
@@ -61,6 +66,11 @@ title: Stream iterators
       "    yield tag;" "\n"
       "  }" "\n"
       "}" "\n"
+      "input = 'chrs';" "\n"
+      "tags = Array.from(streamParse(input));" "\n"
+      "input = decodeUTF8(readFile('./fixture'));" "\n"
+      "tags = await Array.fromAsync(streamParse(input));" "\n"
+      "// Hooray, a successful abstraction!" "\n"
     </>
   </>
 
