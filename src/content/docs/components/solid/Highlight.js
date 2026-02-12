@@ -1,15 +1,20 @@
-import { highlightCode } from 'bedazzlr';
-import { spam as m } from '@bablr/boot';
-import * as Spans from '@bablr/agast-helpers/spans';
-import { buildSpan } from '@bablr/agast-helpers/builders';
-import cstml from '@bablr/language-en-cstml';
-import esnext from '@bablr/language-en-esnext';
-import json from '@bablr/language-en-json';
-import { eat, eatMatch, extendLanguage, getInstrMatcher } from '@bablr/helpers/grammar';
-import { Coroutine } from '@bablr/coroutine';
-import { reifyMatcherReferenceName } from '@bablr/agast-vm-helpers';
-import { triviaEnhancer } from '@bablr/helpers/trivia';
-import { onCleanup, onMount } from 'solid-js';
+import { highlightCode } from "bedazzlr";
+import { spam as m } from "@bablr/boot";
+import * as Spans from "@bablr/agast-helpers/spans";
+import { buildSpan } from "@bablr/agast-helpers/builders";
+import cstml from "@bablr/language-en-cstml";
+import esnext from "@bablr/language-en-esnext";
+import json from "@bablr/language-en-json";
+import {
+  eat,
+  eatMatch,
+  extendLanguage,
+  getInstrMatcher,
+} from "@bablr/helpers/grammar";
+import { Coroutine } from "@bablr/coroutine";
+import { reifyMatcherReferenceName } from "@bablr/agast-vm-helpers";
+import { triviaEnhancer } from "@bablr/helpers/trivia";
+import { onCleanup, onMount } from "solid-js";
 import {
   buildBoundNodeMatcher,
   buildNodeFlags,
@@ -17,10 +22,9 @@ import {
   buildReferenceMatcher,
   buildTreeNodeMatcher,
   buildTreeNodeMatcherOpen,
-} from '@bablr/helpers/builders';
-import { buildEmbeddedMatcher } from '@bablr/agast-vm-helpers/builders';
-import { getStreamIterator } from '@bablr/stream-iterator';
-import { maybeWait } from '@bablr/agast-helpers/stream';
+} from "@bablr/helpers/builders";
+import { buildEmbeddedMatcher } from "@bablr/agast-vm-helpers/builders";
+import { maybeWait, getStreamIterator } from "@bablr/agast-helpers/stream";
 
 let runCo = (generator) => new Coroutine(generator).advance();
 
@@ -28,7 +32,7 @@ let proposalStreamIterator = (language) => {
   return extendLanguage(language, {
     grammar: triviaEnhancer(
       {
-        triviaIsAllowed: (s) => s.span.name === 'Bare',
+        triviaIsAllowed: (s) => s.span.name === "Bare",
         triviaMatcher: m`#: <Trivia /[ \n\r\t]|\/\/|\/\*/ />`,
 
         *Trivia() {
@@ -46,7 +50,7 @@ let proposalStreamIterator = (language) => {
             let instr = co.value;
             let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
 
-            if (refName === 'asyncToken') {
+            if (refName === "asyncToken") {
               let async_ = yield instr;
               co.advance(async_);
               if (async_) {
@@ -65,7 +69,7 @@ let proposalStreamIterator = (language) => {
             let instr = co.value;
             let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
 
-            if (refName === 'asyncToken') {
+            if (refName === "asyncToken") {
               let async_ = yield instr;
               if (async_) {
                 yield eatMatch(m`optionalAsyncToken*: <* '?' />`);
@@ -84,7 +88,7 @@ let proposalStreamIterator = (language) => {
             let instr = co.value;
             let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
 
-            if (refName === 'awaitToken') {
+            if (refName === "awaitToken") {
               let await_ = yield instr;
               if (await_) {
                 yield eatMatch(m`optionalAwaitToken*: <* '?' />`);
@@ -117,10 +121,10 @@ const Highlighter = (props) => {
   let block;
 
   onMount(() => {
-    let canonicalURL = block.getAttribute('bablr-lang');
+    let canonicalURL = block.getAttribute("bablr-lang");
     let language = languages.get(canonicalURL);
-    let flags = block.getAttribute('bablr-ref-flags');
-    let name = block.getAttribute('bablr-prod');
+    let flags = block.getAttribute("bablr-ref-flags");
+    let name = block.getAttribute("bablr-prod");
 
     if (!language) return;
     if (!name && !language.defaultMatcher) return;
@@ -132,10 +136,12 @@ const Highlighter = (props) => {
         name
           ? buildEmbeddedMatcher(
               buildPropertyMatcher(
-                buildReferenceMatcher('_', null, flags),
+                buildReferenceMatcher("_", null, flags),
                 buildBoundNodeMatcher(
                   [],
-                  buildTreeNodeMatcher(buildTreeNodeMatcherOpen(buildNodeFlags(), null, name)),
+                  buildTreeNodeMatcher(
+                    buildTreeNodeMatcherOpen(buildNodeFlags(), null, name),
+                  ),
                 ),
               ),
             )
@@ -143,7 +149,10 @@ const Highlighter = (props) => {
         {
           chunkSize: 20,
           bablr: {
-            spans: Spans.fromValues([buildSpan('Trivia', null, { spaces: 2 }), buildSpan('Bare')]),
+            spans: Spans.fromValues([
+              buildSpan("Trivia", null, { spaces: 2 }),
+              buildSpan("Bare"),
+            ]),
           },
         },
       ),
