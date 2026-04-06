@@ -34,6 +34,74 @@ import { buildSpanEntry, printSource } from '@bablr/agast-helpers/tree';
 let runCo = (generator) => new Coroutine(generator).advance();
 
 let proposalStreamIterator = (language) => {
+  class Grammar extends language.grammar.atrivial {
+    *FunctionExpression(args) {
+      let co = runCo(super.FunctionExpression(args));
+
+      while (!co.done) {
+        let instr = co.value;
+        let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
+
+        if (refName === 'asyncToken') {
+          let async_ = yield instr;
+          co.advance(async_);
+          if (async_) {
+            yield eatMatch(m`optionalAsyncToken*: <* '?' />`);
+          }
+        } else {
+          co.advance(yield instr);
+        }
+      }
+    }
+
+    *FunctionDeclaration(args) {
+      let co = runCo(super.FunctionDeclaration(args));
+
+      while (!co.done) {
+        let instr = co.value;
+        let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
+
+        if (refName === 'asyncToken') {
+          let async_ = yield instr;
+          if (async_) {
+            yield eatMatch(m`optionalAsyncToken*: <* '?' />`);
+          }
+          co.advance(async_);
+        } else {
+          co.advance(yield instr);
+        }
+      }
+    }
+
+    *For(args) {
+      let co = runCo(super.For(args));
+
+      while (!co.done) {
+        let instr = co.value;
+        let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
+
+        if (refName === 'awaitToken') {
+          let await_ = yield instr;
+          if (await_) {
+            yield eatMatch(m`optionalAwaitToken*: <* '?' />`);
+          }
+          co.advance(await_);
+        } else {
+          co.advance(yield instr);
+        }
+      }
+    }
+
+    *AwaitExpression() {
+      yield eat(m`sigilToken*: <*Keyword 'await' />`);
+      yield eatMatch(m`optionalToken*: <* '?' />`);
+      yield eat(m`expression+$: <_Expression />`);
+    }
+  }
+
+  freeze(Grammar);
+  freeze(Grammar.prototype);
+
   return extendLanguage(language, {
     grammar: triviaEnhancer(
       {
@@ -59,70 +127,7 @@ let proposalStreamIterator = (language) => {
           yield endSpan();
         },
       },
-      class Grammar extends language.grammar.atrivial {
-        *FunctionExpression(args) {
-          let co = runCo(super.FunctionExpression(args));
-
-          while (!co.done) {
-            let instr = co.value;
-            let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
-
-            if (refName === 'asyncToken') {
-              let async_ = yield instr;
-              co.advance(async_);
-              if (async_) {
-                yield eatMatch(m`optionalAsyncToken*: <* '?' />`);
-              }
-            } else {
-              co.advance(yield instr);
-            }
-          }
-        }
-
-        *FunctionDeclaration(args) {
-          let co = runCo(super.FunctionDeclaration(args));
-
-          while (!co.done) {
-            let instr = co.value;
-            let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
-
-            if (refName === 'asyncToken') {
-              let async_ = yield instr;
-              if (async_) {
-                yield eatMatch(m`optionalAsyncToken*: <* '?' />`);
-              }
-              co.advance(async_);
-            } else {
-              co.advance(yield instr);
-            }
-          }
-        }
-
-        *For(args) {
-          let co = runCo(super.For(args));
-
-          while (!co.done) {
-            let instr = co.value;
-            let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
-
-            if (refName === 'awaitToken') {
-              let await_ = yield instr;
-              if (await_) {
-                yield eatMatch(m`optionalAwaitToken*: <* '?' />`);
-              }
-              co.advance(await_);
-            } else {
-              co.advance(yield instr);
-            }
-          }
-        }
-
-        *AwaitExpression() {
-          yield eat(m`sigilToken*: <*Keyword 'await' />`);
-          yield eatMatch(m`optionalToken*: <* '?' />`);
-          yield eat(m`expression+$: <_Expression />`);
-        }
-      },
+      Grammar,
     ),
   });
 };
