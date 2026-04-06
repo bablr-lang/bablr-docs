@@ -1,12 +1,11 @@
-import '@bablr/deep-freeze/register';
+import { createVisibilityObserver } from '@solid-primitives/intersection-observer';
 import { highlightCode } from 'bedazzlr';
-import { spam as m, re } from '@bablr/boot';
-import * as Spans from '@bablr/agast-helpers/spans';
-import { buildSpan } from '@bablr/agast-helpers/builders';
+import * as BMap from '@bablr/agast-helpers/b-map';
 import cstml from '@bablr/language-en-cstml';
 import esnext from '@bablr/language-en-esnext';
 import json from '@bablr/language-en-json';
 import {
+  m,
   o,
   eat,
   eatMatch,
@@ -19,7 +18,7 @@ import {
 import { Coroutine } from '@bablr/coroutine';
 import { reifyMatcherReferenceName } from '@bablr/agast-vm-helpers';
 import { triviaEnhancer } from '@bablr/helpers/trivia';
-import { onCleanup, onMount } from 'solid-js';
+import { onCleanup } from 'solid-js';
 import {
   buildBoundNodeMatcher,
   buildNodeFlags,
@@ -30,7 +29,7 @@ import {
 } from '@bablr/helpers/builders';
 import { buildEmbeddedMatcher } from '@bablr/agast-vm-helpers/builders';
 import { maybeWait, getStreamIterator } from '@bablr/agast-helpers/stream';
-import { printSource } from '@bablr/agast-helpers/tree';
+import { buildSpanEntry, printSource } from '@bablr/agast-helpers/tree';
 
 let runCo = (generator) => new Coroutine(generator).advance();
 
@@ -41,12 +40,12 @@ let proposalStreamIterator = (language) => {
         triviaIsAllowed: (s) => s.span.name === 'Bare',
 
         *Trivia({ s }) {
-          let span = Spans.getSpan('Trivia', s().spans);
+          let span = BMap.get('Trivia', s().spans);
 
           let spaces = span?.props.spaces ?? Infinity;
 
           yield startSpan('Trivia', null, span?.props);
-          let res = yield match(re`/\/\/|\/\*|[ \t][^ \t\r\n\g]|[ \n\r\t]/`);
+          let res = yield match(m`/\/\/|\/\*|[ \t][^ \t\r\n\g]|[ \n\r\t]/`);
 
           if (res) {
             res = printSource(res);
@@ -128,6 +127,8 @@ let proposalStreamIterator = (language) => {
   });
 };
 
+const useVisibilityObserver = createVisibilityObserver();
+
 let languages = new Map([
   [cstml.canonicalURL, cstml],
   [esnext.canonicalURL, proposalStreamIterator(esnext)],
@@ -136,16 +137,20 @@ let languages = new Map([
 
 const Highlighter = (props) => {
   let iter;
-  let block;
+  let block = props.fallback.firstElementChild;
 
-  onMount(() => {
+  let visible = useVisibilityObserver(() => {
+    if (!visible()) {
+      return block;
+    }
+
     let canonicalURL = block.getAttribute('bablr-lang');
     let language = languages.get(canonicalURL);
     let flags = block.getAttribute('bablr-ref-flags');
     let name = block.getAttribute('bablr-prod');
 
-    if (!language) return;
-    if (!name && !language.defaultMatcher) return;
+    if (!language) return null;
+    if (!name && !language.defaultMatcher) return null;
 
     iter = getStreamIterator(
       highlightCode(
@@ -165,7 +170,10 @@ const Highlighter = (props) => {
         {
           chunkSize: 20,
           bablr: {
-            spans: Spans.fromValues([buildSpan('Trivia', null, { spaces: 2 }), buildSpan('Bare')]),
+            spans: BMap.fromValues([
+              buildSpanEntry('Trivia', null, { spaces: 2 }),
+              buildSpanEntry('Bare'),
+            ]),
           },
         },
       ),
@@ -181,6 +189,8 @@ const Highlighter = (props) => {
     };
 
     maybeWait(stepPromise, callback);
+
+    return null;
   });
 
   onCleanup(() => {
@@ -188,7 +198,6 @@ const Highlighter = (props) => {
     iter.return();
   });
 
-  block = props.fallback.firstElementChild;
   return block;
 };
 

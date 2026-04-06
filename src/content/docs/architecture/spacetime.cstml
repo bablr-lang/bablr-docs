@@ -4,7 +4,7 @@ highlighter: "../../../components/Bedazzlr.astro"
 title: Stream iterators
 ---
 <!0:cstml>
-<_>
+<__>
   <p>
     "One of the innovations that makes BABLR work efficiently is its use of stream iterators. The BABLR parser operates on streams at every level: it uses streams of characters for input, streams of tags for output, and streams of instructions to control the parser. In fact we rely so heavily on streams that for reasons of abstraction and performance we've had to develop our own way of representing them."
   </>

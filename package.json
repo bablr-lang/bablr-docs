@@ -18,11 +18,12 @@
     "@bablr/boot": "0.11.4",
     "@bablr/coroutine": "0.1.0",
     "@bablr/starlight": "^0.32.13",
-    "bedazzlr": "0.2.9",
     "@bablr/language-en-cstml": "0.12.6",
     "@bablr/language-en-json": "0.13.4",
     "@bablr/language-en-esnext": "0.3.8",
+    "@solid-primitives/intersection-observer": "2.2.4",
     "astro": "^5.7.0",
+    "bedazzlr": "0.2.9",
     "find-up": "8.0.0",
     "sharp": "^0.32.6",
     "solid-js": "1.9.11"

@@ -4,7 +4,7 @@ highlighter: "../../../components/Bedazzlr.astro"
 title: "Intro to CSTML"
 ---
 <!0:cstml>
-<_>
+<__>
   <p>
     "CSTML is a format for storing data, especially syntax trees. It takes ideas from JSON, XML, and HTML. This guide will help you understand the basics of the CSTML language by going through a series of examples."
   </>

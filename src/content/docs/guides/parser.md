@@ -22,7 +22,7 @@ The contents of `My Grammar` start empty, and an empty file is not a valid parse
 const { o, eat, eatMatch, match, fail } = helpers.grammar;
 const { spam: m, re } = helpers.shorthand;
 
-const canonicalURL = "https://my-grammar";
+const canonicalURL = 'https://my-grammar';
 
 const grammar = class Grammar {
   *Document() {
@@ -89,19 +89,19 @@ If you've managed to edit your grammar successfully, you should now see `Fizz` a
 - Put `Fizz` into the `Input` input -- at least if you want to observe a successful parsing run.
 - Click the ▶ button
 
-You'll know the parse is successful if you see many lines of indented tag structure appear in the `Output` section. 
+You'll know the parse is successful if you see many lines of indented tag structure appear in the `Output` section.
 
 If you're still with me, congratulations, you're ready to start building up your grammar! The next tool we'll add to our parsing toolkit is regexes. To show how they work lets write the `Number` production:
 
 ```js
 class grammar {
   *Number() {
-    yield eat(re`/\d+/`);
+    yield eat(m`/\d+/`);
   }
 }
 ```
 
-The big thing to notice here is that the `` re`/pattern/` `` template tag syntax is required. You must use it because BABLR has its own regex engine and its own flavor of regex (though one that is very closely related to Javascript's flavor of regex). For now you don't need to worry about the difference except to know that BABLR's regex engine uses these template tag patterns and always requires patterns to match at the present position in the input, like the `/y` flag does for JS regex.
+The big thing to notice here is that the `` m`/pattern/` `` template tag syntax is required. You must use it because BABLR has its own regex engine and its own flavor of regex (though one that is very closely related to Javascript's flavor of regex). For now you don't need to worry about the difference except to know that BABLR's regex engine uses these template tag patterns and always requires patterns to match at the present position in the input, like the `/y` flag does for JS regex.
 
 Inputs you should now be able to match when `Number` is selected as the top-level production should include `1`. `01`, and `123456789`
 
@@ -144,7 +144,7 @@ class grammar {
   }
 
   *Space() {
-    yield eat(re`/[ \t\r\n\]+/`);
+    yield eat(m`/[ \t\r\n\]+/`);
   }
 }
 ```
@@ -153,7 +153,7 @@ class grammar {
 
 We should now be matching `Fizz Buzz` which is perfect, but we're also probably accepting `Fizz` and `Buzz` on separate lines because of that `\n` we're allowing (you can verify this with the plaground). For a correct parse we need to treat that situation as a `Fizz` and a `Buzz` as opposed to a single `FizzBuzz`.
 
-The most obvious way to fix this problem is to narrow the definition of `Space`, for example you might split `Space` into several productions like `SpaceWithNewline` and `SpaceNoNewline`, but generally we find this to be clumsy because it obscures the general category: that all these things really are just spaces. 
+The most obvious way to fix this problem is to narrow the definition of `Space`, for example you might split `Space` into several productions like `SpaceWithNewline` and `SpaceNoNewline`, but generally we find this to be clumsy because it obscures the general category: that all these things really are just spaces.
 
 If we want to preserve `Space` as a general production we can pass props to it from its caller to influence its behavior, like this:
 
@@ -167,9 +167,9 @@ class grammar {
 
   *Space({ props: { newline = true } }) {
     if (newline) {
-      yield eat(re`/[\r\n\]+/`);
+      yield eat(m`/[\r\n\]+/`);
     } else {
-      yield eat(re`/[ \t]+/`);
+      yield eat(m`/[ \t]+/`);
     }
   }
 }
@@ -185,7 +185,7 @@ class grammar {
     // The _ in <_Value> prevents this from appearing in output
     let val;
     do {
-      val = yield eatMatch(m`values[]: <__Value />`)
+      val = yield eatMatch(m`values[]: <__Value />`);
     } while (val && (yield eatMatch(m`#: <*Space />`)));
   }
 
@@ -226,13 +226,15 @@ class grammar {
     let val;
     let i = 1;
     do {
-      val = yield eatMatch(m`values[]: <__Value />`)
+      val = yield eatMatch(m`values[]: <__Value />`);
 
       let shouldFizz = i % 3 === 0;
       let shouldBuzz = i % 5 === 0;
 
       if (
-        (shouldFizz && shouldBuzz && val.type !== 'FizzBuzz') ||
+        (shouldFizz &&
+          shouldBuzz &&
+          val.type !== 'FizzBuzz') ||
         (shouldFizz && val.type !== 'Fizz') ||
         (shouldBuzz && val.type !== 'Buzz')
       ) {
@@ -251,22 +253,24 @@ If you got lost somewhere, or just prefer to see the whole thing from the beginn
 
 ```js
 const { o, eat, eatMatch, match, fail } = helpers.grammar;
-const { spam: m, re } = helpers.shorthand;
+const { m } = helpers.shorthand;
 
-const canonicalURL = "https://my-grammar";
+const canonicalURL = 'https://my-grammar';
 
 class grammar {
   *Sequence() {
     let val;
     let i = 1;
     do {
-      val = yield eatMatch(m`values[]: <__Value />`)
+      val = yield eatMatch(m`values[]: <__Value />`);
 
       let shouldFizz = i % 3 === 0;
       let shouldBuzz = i % 5 === 0;
 
       if (
-        (shouldFizz && shouldBuzz && val.type !== 'FizzBuzz') ||
+        (shouldFizz &&
+          shouldBuzz &&
+          val.type !== 'FizzBuzz') ||
         (shouldFizz && val.type !== 'Fizz') ||
         (shouldBuzz && val.type !== 'Buzz')
       ) {
@@ -283,7 +287,7 @@ class grammar {
     } else if (yield eatMatch(m`<*Buzz />`)) {
     }
   }
-  
+
   *FizzBuzz() {
     yield eat(m`fizz: <*Fizz />`);
     yield eat(m`#: <*Space />`, o({ newline: false }));
@@ -298,14 +302,14 @@ class grammar {
     yield eat('Buzz');
   }
   *Number() {
-    yield eat(re`/\d+/`);
+    yield eat(m`/\d+/`);
   }
 
   *Space({ props: { newline = true } }) {
     if (newline) {
-      yield eat(re`/[\r\n\]+/`);
+      yield eat(m`/[\r\n\]+/`);
     } else {
-      yield eat(re`/[ \t]+/`);
+      yield eat(m`/[ \t]+/`);
     }
   }
 }
