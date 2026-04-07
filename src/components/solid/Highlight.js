@@ -1,6 +1,7 @@
+import { createRoot } from 'solid-js';
 import { createVisibilityObserver } from '@solid-primitives/intersection-observer';
 import { highlightCode } from 'bedazzlr';
-import * as BMap from '@bablr/agast-helpers/b-map';
+import * as BListKeyed from '@bablr/agast-helpers/b-map';
 import cstml from '@bablr/language-en-cstml';
 import esnext from '@bablr/language-en-esnext';
 import json from '@bablr/language-en-json';
@@ -10,7 +11,6 @@ import {
   eat,
   eatMatch,
   endSpan,
-  extendLanguage,
   getInstrMatcher,
   match,
   startSpan,
@@ -30,11 +30,12 @@ import {
 import { buildEmbeddedMatcher } from '@bablr/agast-vm-helpers/builders';
 import { maybeWait, getStreamIterator } from '@bablr/agast-helpers/stream';
 import { buildSpanEntry, printSource } from '@bablr/agast-helpers/tree';
+import { freeze } from '@bablr/agast-helpers/object';
 
 let runCo = (generator) => new Coroutine(generator).advance();
 
 let proposalStreamIterator = (language) => {
-  class Grammar extends language.grammar.atrivial {
+  class Grammar extends language.atrivial {
     *FunctionExpression(args) {
       let co = runCo(super.FunctionExpression(args));
 
@@ -102,37 +103,35 @@ let proposalStreamIterator = (language) => {
   freeze(Grammar);
   freeze(Grammar.prototype);
 
-  return extendLanguage(language, {
-    grammar: triviaEnhancer(
-      {
-        triviaIsAllowed: (s) => s.span.name === 'Bare',
+  return triviaEnhancer(
+    {
+      triviaIsAllowed: (s) => s.span.name === 'Bare',
 
-        *Trivia({ s }) {
-          let span = BMap.get('Trivia', s().spans);
+      *Trivia({ s }) {
+        let span = BListKeyed.get('Trivia', s().spans);
 
-          let spaces = span?.props.spaces ?? Infinity;
+        let spaces = span?.props.spaces ?? Infinity;
 
-          yield startSpan('Trivia', null, span?.props);
-          let res = yield match(m`/\/\/|\/\*|[ \t][^ \t\r\n\g]|[ \n\r\t]/`);
+        yield startSpan('Trivia', null, span?.props);
+        let res = yield match(m`/\/\/|\/\*|[ \t][^ \t\r\n\g]|[ \n\r\t]/`);
 
-          if (res) {
-            res = printSource(res);
-          }
+        if (res) {
+          res = printSource(res);
+        }
 
-          if (res && ' \t'.includes(res[0]) && res.length === 2 && spaces > 1) {
-            yield eat(m`#: <* ' ' />`, o({}), o({ hold: true }));
-          } else {
-            yield eat(m`#: <Trivia />`, o({}), o({ hold: true }));
-          }
-          yield endSpan();
-        },
+        if (res && ' \t'.includes(res[0]) && res.length === 2 && spaces > 1) {
+          yield eat(m`#: <* ' ' />`, o({}), o({ hold: true }));
+        } else {
+          yield eat(m`#: <Trivia />`, o({}), o({ hold: true }));
+        }
+        yield endSpan();
       },
-      Grammar,
-    ),
-  });
+    },
+    Grammar,
+  );
 };
 
-const useVisibilityObserver = createVisibilityObserver();
+const useVisibilityObserver = createRoot(createVisibilityObserver);
 
 let languages = new Map([
   [cstml.canonicalURL, cstml],
@@ -175,7 +174,7 @@ const Highlighter = (props) => {
         {
           chunkSize: 20,
           bablr: {
-            spans: BMap.fromValues([
+            spans: BListKeyed.fromValues([
               buildSpanEntry('Trivia', null, { spaces: 2 }),
               buildSpanEntry('Bare'),
             ]),

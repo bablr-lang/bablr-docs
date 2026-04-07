@@ -10,7 +10,7 @@ title: Stream iterators
   </>
 
   <p>
-    "Iterators add a layer of indirection to data access, and in Javascript they have a performance cost. What they offer in return is an abstraction over how data is stored. You can write a method " <code "parse(chrs)" { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6' } /> " which sees its input a sequence of characters without needing to say whether the characters are stored in a " <code "String" /> " or an " <code "Array" /> " or a " <code "Buffer" /> ", perhaps even a rope as is used in text editors. Actually presenting an abstraction over in-memory data structures is a particularly easy problem: it only requires synchronous iteration."
+    "Iterators add a layer of indirection to data access, and in Javascript they have a performance cost. What they offer in return is an abstraction over how data is stored. You can write a method " <code "parse(chrs)" { 'bablr-lang': 'https://bablr.org/languages/universe/en/esnext' } /> " which sees its input a sequence of characters without needing to say whether the characters are stored in a " <code "String" /> " or an " <code "Array" /> " or a " <code "Buffer" /> ", perhaps even a rope as is used in text editors. Actually presenting an abstraction over in-memory data structures is a particularly easy problem: it only requires synchronous iteration."
   </>
 
   <p>
@@ -30,7 +30,7 @@ title: Stream iterators
   </>
 
   <pre>
-    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6', 'bablr-prod': 'Program' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/esnext', 'bablr-prod': 'Program' }>
       "let tags, input;" "\n"
       "// The sync API must exist for callers in sync functions" "\n"
       "function* syncParse(chrs) {" "\n"
@@ -59,7 +59,7 @@ title: Stream iterators
   </>
 
   <pre>
-    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6', 'bablr-prod': 'Program' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/esnext', 'bablr-prod': 'Program' }>
       "async? function* streamParse(chrs) {" "\n"
       "  for await? (let chr of chrs) {" "\n"
       "    /* ...do parsing stuff */" "\n"
@@ -83,7 +83,7 @@ title: Stream iterators
   </>
 
   <pre>
-    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/es6', 'bablr-prod': 'Program' }>
+    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/esnext', 'bablr-prod': 'Program' }>
       "import { streamify, wait } from '@bablr/stream-iterator';" "\n"
       "" "\n"
       "let streamParse = streamify(function* (chrs) {" "\n"
