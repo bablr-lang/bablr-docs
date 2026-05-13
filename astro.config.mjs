@@ -40,7 +40,7 @@ export default defineConfig({
       sidebar: [
         {
           label: 'Guides',
-          items: ['guides/what', 'guides/cstml'],
+          items: ['guides/what', 'guides/cstml', 'guides/test'],
         },
         // {
         //   label: 'Reference',

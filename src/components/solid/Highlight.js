@@ -1,4 +1,4 @@
-import { createRoot } from 'solid-js';
+import { createRoot, onCleanup } from 'solid-js';
 import { createVisibilityObserver } from '@solid-primitives/intersection-observer';
 import { highlightCode } from 'bedazzlr';
 import * as BListKeyed from '@bablr/agast-helpers/b-map';
@@ -15,80 +15,73 @@ import {
   match,
   startSpan,
 } from '@bablr/helpers/grammar';
-import { Coroutine } from '@bablr/coroutine';
-import { reifyMatcherReferenceName } from '@bablr/agast-vm-helpers';
 import { triviaEnhancer } from '@bablr/helpers/trivia';
-import { onCleanup } from 'solid-js';
-import {
-  buildBoundNodeMatcher,
-  buildNodeFlags,
-  buildPropertyMatcher,
-  buildReferenceMatcher,
-  buildTreeNodeMatcher,
-  buildTreeNodeMatcherOpen,
-} from '@bablr/helpers/builders';
-import { buildEmbeddedMatcher } from '@bablr/agast-vm-helpers/builders';
-import { maybeWait, getStreamIterator } from '@bablr/agast-helpers/stream';
-import { buildSpanEntry, printSource } from '@bablr/agast-helpers/tree';
-import { freeze } from '@bablr/agast-helpers/object';
+import { getStreamIterator } from '@bablr/agast-helpers/stream';
+import { buildSpanEntry, evaluateReturn, printSource } from '@bablr/agast-helpers/tree';
+import { freezeClass, freezeRecord } from '@bablr/agast-helpers/object';
+import { maybeWait } from '@bablr/agast-helpers/iterable';
+import { buildEmbeddedCallable } from '@bablr/agast-vm-helpers/builders';
 
-let runCo = (generator) => new Coroutine(generator).advance();
+Error.stackTraceLimit = 20;
 
 let proposalStreamIterator = (language) => {
   class Grammar extends language.atrivial {
     *FunctionExpression(args) {
-      let co = runCo(super.FunctionExpression(args));
+      let iter = super.FunctionExpression(args);
+      let step = iter.next();
 
-      while (!co.done) {
-        let instr = co.value;
-        let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
+      while (!step.done) {
+        let instr = step.value;
+        let refName = getInstrMatcher(instr)?.reference.value.name;
 
         if (refName === 'asyncToken') {
           let async_ = yield instr;
-          co.advance(async_);
+          step = iter.next(async_);
           if (async_) {
             yield eatMatch(m`optionalAsyncToken*: <* '?' />`);
           }
         } else {
-          co.advance(yield instr);
+          step = iter.next(yield instr);
         }
       }
     }
 
     *FunctionDeclaration(args) {
-      let co = runCo(super.FunctionDeclaration(args));
+      let iter = super.FunctionDeclaration(args);
+      let step = iter.next();
 
-      while (!co.done) {
-        let instr = co.value;
-        let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
+      while (!step.done) {
+        let instr = step.value;
+        let refName = getInstrMatcher(instr)?.reference.value.name;
 
         if (refName === 'asyncToken') {
           let async_ = yield instr;
           if (async_) {
             yield eatMatch(m`optionalAsyncToken*: <* '?' />`);
           }
-          co.advance(async_);
+          step = iter.next(async_);
         } else {
-          co.advance(yield instr);
+          step = iter.next(yield instr);
         }
       }
     }
 
     *For(args) {
-      let co = runCo(super.For(args));
+      let iter = super.For(args);
+      let step = iter.next();
 
-      while (!co.done) {
-        let instr = co.value;
-        let refName = reifyMatcherReferenceName(getInstrMatcher(instr));
+      while (!step.done) {
+        let instr = step.value;
+        let refName = getInstrMatcher(instr)?.reference.value.name;
 
         if (refName === 'awaitToken') {
           let await_ = yield instr;
           if (await_) {
             yield eatMatch(m`optionalAwaitToken*: <* '?' />`);
           }
-          co.advance(await_);
+          step = iter.next(await_);
         } else {
-          co.advance(yield instr);
+          step = iter.next(yield instr);
         }
       }
     }
@@ -100,8 +93,7 @@ let proposalStreamIterator = (language) => {
     }
   }
 
-  freeze(Grammar);
-  freeze(Grammar.prototype);
+  freezeClass(Grammar);
 
   return triviaEnhancer(
     {
@@ -157,30 +149,15 @@ const Highlighter = (props) => {
     if (!name && !language.defaultMatcher) return null;
 
     iter = getStreamIterator(
-      highlightCode(
-        block,
-        language,
-        name
-          ? buildEmbeddedMatcher(
-              buildPropertyMatcher(
-                buildReferenceMatcher('_', null, flags),
-                buildBoundNodeMatcher(
-                  [],
-                  buildTreeNodeMatcher(buildTreeNodeMatcherOpen(buildNodeFlags(), null, name)),
-                ),
-              ),
-            )
-          : language.defaultMatcher,
-        {
-          chunkSize: 20,
-          bablr: {
-            spans: BListKeyed.fromValues([
-              buildSpanEntry('Trivia', null, { spaces: 2 }),
-              buildSpanEntry('Bare'),
-            ]),
-          },
+      highlightCode(block, language, name ? m`_: <${name} />` : language.defaultMatcher, {
+        chunkSize: 20,
+        bablr: {
+          spans: BListKeyed.fromValues([
+            buildSpanEntry('Trivia', null, '{ spaces: 2 }'),
+            buildSpanEntry('Bare'),
+          ]),
         },
-      ),
+      }),
     );
 
     let stepPromise = iter.next();
@@ -197,9 +174,12 @@ const Highlighter = (props) => {
     return null;
   });
 
-  onCleanup(() => {
-    stepPromise = null;
-    iter.return();
+  onCleanup(async () => {
+    let step = iter.return();
+    while (step instanceof Promise || step === null) {
+      if (step === null) step = iter.return();
+      if (step instanceof Promise) step = await step;
+    }
   });
 
   return block;

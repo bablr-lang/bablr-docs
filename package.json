@@ -15,8 +15,6 @@
     "@bablr/agast-helpers": "0.10.10",
     "@bablr/agast-vm-helpers": "0.10.5",
     "@bablr/helpers": "0.25.5",
-    "@bablr/boot": "0.11.4",
-    "@bablr/coroutine": "0.1.0",
     "@bablr/starlight": "^0.32.13",
     "@bablr/language-en-cstml": "0.12.6",
     "@bablr/language-en-json": "0.13.4",
@@ -29,6 +27,11 @@
     "solid-js": "1.9.11"
   },
   "devDependencies": {
-    "@flydotio/dockerfile": "^0.7.10"
+    "@flydotio/dockerfile": "^0.7.10",
+    "@bablr/eslint-config-base": "github:bablr-lang/eslint-config-base#23b94fb3bdfdbc3ac7ed9cb58d7979d8f07dce2b",
+    "enhanced-resolve": "^5.12.0",
+    "eslint": "^8.32.0",
+    "eslint-import-resolver-enhanced-resolve": "^1.0.5",
+    "eslint-plugin-import": "^2.27.5"
   }
 }
