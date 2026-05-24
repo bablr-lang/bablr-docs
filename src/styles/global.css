@@ -12,6 +12,10 @@
     background-color: var(--sl-color-bg-sidebar);
   }
 
+  code {
+    color: rgb(231, 231, 231);
+  }
+
   code node[name='String'] {
     color: rgb(162, 207, 28);
   }
@@ -32,17 +36,23 @@
     color: rgb(59, 181, 209);
   }
 
-  code node[name='LineComment'],
-  code node[name='BlockComment'] {
-    color: rgb(127, 155, 155);
-  }
-
   code .selected node.token {
     background-color: #3e618f;
+  }
+
+  code node[name='LineComment'],
+  code node[name='BlockComment'],
+  code node[name='ReferenceTag'],
+  code node[name='BindingTag'] {
+    color: rgb(144, 144, 144);
   }
 }
 
 :root[data-theme='light'] {
+  code {
+    color: rgb(12, 12, 12);
+  }
+
   code node[name='String'] {
     color: green;
   }
@@ -64,8 +74,10 @@
   }
 
   code node[name='LineComment'],
-  code node[name='BlockComment'] {
-    color: rgb(127, 155, 155);
+  code node[name='BlockComment'],
+  code node[name='ReferenceTag'],
+  code node[name='BindingTag'] {
+    color: rgb(104, 104, 104);
   }
 }
 

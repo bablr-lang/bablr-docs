@@ -40,12 +40,12 @@ export default defineConfig({
       sidebar: [
         {
           label: 'Guides',
-          items: ['guides/what', 'guides/cstml', 'guides/test'],
+          items: ['guides/cstml', 'guides/agast'],
         },
-        // {
-        //   label: 'Reference',
-        //   autogenerate: { directory: 'reference' },
-        // },
+        {
+          label: 'Reference',
+          autogenerate: { directory: 'reference' },
+        },
         {
           label: 'Architecture',
           autogenerate: { directory: 'architecture' },

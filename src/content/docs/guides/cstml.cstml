@@ -392,28 +392,6 @@ title: "Intro to CSTML"
     " specifically refers to the namespace defined by the most recent in-scope binding tag."
   </>
 
-  <p>
-    "You can join multiple names within a single binding tag with " <code '/' /> ". For example you might write "
-    <code ':Foo/Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
-    " to get " <i "almost" /> " the same effect as "
-    <code ':Foo: :Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Stream' } />
-    ". But it is not " <i "quite" /> " the same because "
-    <code ':Foo/Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
-    " is " <i "all one binding tag" /> " while "
-    <code ':Foo: :Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Stream' } />
-    " is two binding tags. This means that thanks to our clever definition of "
-    <code ':..:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
-    " you can escape "
-    <code ':Foo/Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
-    " with just "
-    <code ':..:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
-    " as opposed to the "
-    <code ':../..:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Tag' } />
-    " you must use to escape "
-    <code ':Foo: :Bar:' { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Stream' } />
-    "."
-  </>
-
   <h2 'Parsing' />
 
   <p>

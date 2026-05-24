@@ -17,10 +17,9 @@ import {
 } from '@bablr/helpers/grammar';
 import { triviaEnhancer } from '@bablr/helpers/trivia';
 import { getStreamIterator } from '@bablr/agast-helpers/stream';
-import { buildSpanEntry, evaluateReturn, printSource } from '@bablr/agast-helpers/tree';
-import { freezeClass, freezeRecord } from '@bablr/agast-helpers/object';
+import { buildSpanEntry, parseObject, printSource } from '@bablr/agast-helpers/tree';
+import { freezeClass } from '@bablr/agast-helpers/object';
 import { maybeWait } from '@bablr/agast-helpers/iterable';
-import { buildEmbeddedCallable } from '@bablr/agast-vm-helpers/builders';
 
 Error.stackTraceLimit = 20;
 
@@ -102,10 +101,10 @@ let proposalStreamIterator = (language) => {
       *Trivia({ s }) {
         let span = BListKeyed.get('Trivia', s().spans);
 
-        let spaces = span?.props.spaces ?? Infinity;
+        let spaces = (span && parseObject(span.props).spaces) ?? Infinity;
 
         yield startSpan('Trivia', null, span?.props);
-        let res = yield match(m`/\/\/|\/\*|[ \t][^ \t\r\n\g]|[ \n\r\t]/`);
+        let res = yield match(m`/\/\/|\/\*|[ \t][^ \t\r\n\g/]|[ \n\r\t]/`);
 
         if (res) {
           res = printSource(res);
