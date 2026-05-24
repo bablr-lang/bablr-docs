@@ -159,9 +159,9 @@ code node.indent-depth-16 :nth-child(-n + 16 of node.token[name='Indent']) {
   background-color: transparent;
 }
 
-code node.token:not([name='Newline']) {
+/* code node.token:not([name="Newline"]) {
   display: inline-block;
-}
+} */
 
 code .selected node.token {
   background-color: #b4d5ff;
