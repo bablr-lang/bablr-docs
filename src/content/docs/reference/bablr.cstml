@@ -1,0 +1,73 @@
+---
+layout: "@bablr/starlight/components/MarkdownContent.astro"
+highlighter: "../../../components/Bedazzlr.astro"
+title: 'bablr'
+---
+<!0:cstml>
+<__>
+  <p>
+    <code "bablr" /> " is the eponymous package of the BABLR ecosystem. It is used to run BABLR parsers."
+  </>
+    
+  <p>
+    "If you wish to use parsers from the terminal, this is instead supported by the " <code "@bablr/cli" /> " package which wraps this one."
+  </>
+
+  <h2 "Usage" />
+  <pre>
+    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/esnext', 'bablr-prod': 'Program' }>
+      "import { printSource, printTree } from '@bablr/agast-helpers/tree';" "\n"
+      "import { treeParse } from 'bablr';" "\n"
+      "\n"
+      "class language { /* see below */ }" "\n"
+      "let matcher = m`<Sequence />`;" "\n"
+      "let source = '1,2,3';" "\n"
+      "\n"
+      "let document = treeParse(language, matcher, source);" "\n"
+      "\n"
+      "// This property is guaranteed" "\n"
+      "printSource(document) === source; // 1,2,3" "\n"
+      "\n"
+      "printTree(document); // see below" "\n"
+    </>
+  </>
+  <p>
+    "The result of " <code "printTree(document)" /> " is this CSTML text:"
+  </>
+  <pre>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
+      "<NaturalSequence>" "\n"
+      "  values[]: <*NaturalNumber '1' />" "\n"
+      "  #separator: <* ',' />" "\n"
+      "  values[]: <*NaturalNumber '2' />" "\n"
+      "  #separator: <* ',' />" "\n"
+      "  values[]: <*NaturalNumber '3' />" "\n"
+      "</>" "\n"
+    </>
+  </>
+  <p>
+    "And finally here is the definition of " <code "language" /> ":"
+  </>
+    <pre>
+    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/esnext', 'bablr-prod': 'Program' }>
+      "class language {" "\n"
+      "  static {" "\n"
+      "    freezeClass(this);" "\n"
+      "  }" "\n"
+      "\n"
+      "  *NaturalSequence() {" "\n"
+      "    let sep = true;" "\n"
+      "    while (sep && (yield eatMatch(m`values[]: <*NaturalNumber /\\d/ />`))) {" "\n"
+      "      yield eatMatch(m`#: <* /[ \\t]+/ />`);" "\n"
+      "      sep = yield eatMatch(m`#separator: <* ',' />`);" "\n"
+      "      yield eatMatch(m`#: <* /[ \\t]+/ />`);" "\n"
+      "    }" "\n"
+      "  }" "\n"
+      "\n"
+      "  *NaturalNumber() {" "\n"
+      "    yield eat(m`/\\d+/`);" "\n"
+      "  }" "\n"
+      "}" "\n"
+    </>
+  </>
+</>

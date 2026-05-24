@@ -1,0 +1,108 @@
+---
+layout: '@bablr/starlight/components/MarkdownContent.astro'
+highlighter: '../../../components/Bedazzlr.astro'
+title: '@bablr/cli'
+---
+<!0:cstml>
+<__>
+  <p>
+    "This is the CLI runner for BABLR. If you have a BABLR grammar for a computer language, this tool allows you to use it to do streaming parsing. Parse results are presented in CSTML."
+  </>
+
+  <h2 'Usage' />
+  <p>
+    "This package has no built-in language support, but rather expects you to supply a valid import specifier referring to a BABLR language. This likely means that you will likely need to start by installing both the parser and the language you wish to use."
+  </>
+
+  <pre>
+    <code>
+      "Usage: bablr [options]" "\n"
+      "\n"
+      "Options:" "\n"
+      "  -l, --language [URL]     The URL of the top BABLR language" "\n"
+      "  -p, --production [type]  The name of the top production type" "\n"
+      "  -f, --format             Pretty-format CSTML output (default: true)" "\n"
+      "  -F, --no-format" "\n"
+      "  -v, --verbose            Prints debugging information to stderr" "\n"
+      "  -c, --color [WHEN]       When to use ANSI escape colors" "\n"
+      '    WHEN: "auto" | "always" | "never" (default: "auto")' "\n"
+      "  -e, --embedded           Requires quoted input but enables gap parsing" "\n"
+      "  -h, --help               display help for command" "\n"
+    </>
+  </>
+
+  <h2 'Example' />
+
+  <pre>
+    <code>
+      "bablr -l @bablr/language-en-json -p Expression -f << 'EOF'" "\n"
+      "[" "\n"
+      "  1," "\n"
+      "  true," "\n"
+      '  "3"' "\n"
+      "]" "\n"
+      "EOF" "\n"
+    </>
+  </>
+
+  <p>
+    "Running the above command produces the following output. Note that this is a stream parse so lines of output will appear one by one as fast as the input can be read and parsed."
+  </>
+
+  <pre>
+    <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml', 'bablr-prod': 'Document' }>
+      "<_>" "\n"
+      "  _:" "\n"
+      "  <Expression>" "\n"
+      "    .:" "\n"
+      "    <Array>" "\n"
+      "      openToken*: <* '[' />" "\n"
+      "      #:" "\n"
+      "      :Space:" "\n"
+      "      <*Newline '\\n' />" "\n"
+      "      #:" "\n"
+      "      :Space:" "\n"
+      "      <*Space '  ' />" "\n"
+      "      elements[]$:" "\n"
+      "      <Number>" "\n"
+      "        sign*: null" "\n"
+      "        wholePart$: <*UnsignedInteger '1' />" "\n"
+      "        decimalSeparatorToken*: null" "\n"
+      "        exponentSeparatorToken*: null" "\n"
+      "      </>" "\n"
+      "      #separatorTokens: <* ',' />" "\n"
+      "      #:" "\n"
+      "      :Space:" "\n"
+      "      <*Newline '\\n' />" "\n"
+      "      #:" "\n"
+      "      :Space:" "\n"
+      "      <*Space '  ' />" "\n"
+      "      elements[]$:" "\n"
+      "      <Boolean>" "\n"
+      "        sigilToken*: <*Keyword 'true' />" "\n"
+      "      </>" "\n"
+      "      #separatorTokens: <* ',' />" "\n"
+      "      #:" "\n"
+      "      :Space:" "\n"
+      "      <*Newline '\\n' />" "\n"
+      "      #:" "\n"
+      "      :Space:" "\n"
+      "      <*Space '  ' />" "\n"
+      "      elements[]$:" "\n"
+      "      <String>" "\n"
+      "        openToken*: <* '\"' />" "\n"
+      "        content$: <*StringContent '3' />" "\n"
+      "        closeToken*: <* '\"' />" "\n"
+      "      </>" "\n"
+      "      #:" "\n"
+      "      :Space:" "\n"
+      "      <*Newline '\\n' />" "\n"
+      "      closeToken*: <* ']' />" "\n"
+      "    </>" "\n"
+      "  </>" "\n"
+      "</>" "\n"
+    </>
+  </>
+</>
+
+
