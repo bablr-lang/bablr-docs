@@ -22,7 +22,7 @@
     "@bablr/language-en-esnext": "0.4.1",
     "@solid-primitives/intersection-observer": "2.2.4",
     "astro": "^5.7.0",
-    "bedazzlr": "0.3.2",
+    "bedazzlr": "0.3.4",
     "find-up": "8.0.0",
     "sharp": "^0.32.6",
     "solid-js": "1.9.11"
