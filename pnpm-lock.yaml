@@ -45,8 +45,8 @@ importers:
         specifier: ^5.7.0
         version: 5.16.15(rollup@4.57.0)(typescript@5.9.3)
       bedazzlr:
-        specifier: 0.3.2
-        version: 0.3.2
+        specifier: 0.3.4
+        version: 0.3.4
       find-up:
         specifier: 8.0.0
         version: 8.0.0
@@ -1242,8 +1242,8 @@ packages:
   bcp-47@2.1.0:
     resolution: {integrity: sha512-9IIS3UPrvIa1Ej+lVDdDwO7zLehjqsaByECw0bu2RRGP73jALm6FYbzI5gWbgHLvNdkvfXB5YrSbocZdOS0c0w==}
 
-  bedazzlr@0.3.2:
-    resolution: {integrity: sha512-tdGl55Q5UHKGmAhY3K2zvfFFp78W1eJ7hYumHPfTQcfs43a7KKA7OjGw9dFRGPR0gArZ+4QAZFn38M0H5W6Iog==}
+  bedazzlr@0.3.4:
+    resolution: {integrity: sha512-R1wpkfjpso2VcUv8NXGECMKlWyR2C/lNKSF4+hRvaiw1TtPzcBqMgJX1255WQaqhBLazr/trfTm//0Lo5DJS2Q==}
 
   bl@4.1.0:
     resolution: {integrity: sha512-1W07cM9gS6DcLperZfFSj+bWLtaPGSOHWhPiGzXmvVJbRLdG82sH/Kn8EtW1VqWVA54AKf2h5k5BbnIbwF3h6w==}
@@ -4582,7 +4582,7 @@ snapshots:
       is-alphanumerical: 2.0.1
       is-decimal: 2.0.1
 
-  bedazzlr@0.3.2:
+  bedazzlr@0.3.4:
     dependencies:
       '@bablr/agast-helpers': 0.11.4
       '@bablr/agast-vm-helpers': 0.11.4
