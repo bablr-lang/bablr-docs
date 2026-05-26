@@ -1,0 +1,47 @@
+---
+layout: '@bablr/starlight/components/MarkdownContent.astro'
+highlighter: '../../../components/Bedazzlr.astro'
+title: 'bedazzlr'
+---
+<!0:cstml>
+<__>
+  <p>
+    "Bedazzlr is a BABLR-powered client side syntax highlighter for the web. It goes beyond just making text colorful, though! Bedazzlr also provides semantic selection inside code blocks and makes it possible for the reader to explore the syntax tree embedded in a code example."
+  </>
+
+  <p>
+    "Bedazzlr use streaming parse output from BABLR to wrap spans of text in HTML " <code 'node' /> " elements. Code examples are then styled using CSS."
+  </>
+
+  <h2 "Usage" />
+  <p>
+    "We are using Bedazzlr to power the code examples in this docs site... like this one! Try clicking and dragging to trigger semantic selection."
+  </>
+
+  <pre>
+    <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/esnext', 'bablr-prod': 'Program' }>
+      'import { highlightAll } from "bedazzlr";' "\n"
+      'import * as BMap from "@bablr/agast-helpers/b-map";' "\n"
+      'import { evaluateReturn } from "@bablr/agast-helpers/stream";' "\n"
+      "\n"
+      'import cstml from "@bablr/language-en-cstml";' "\n"
+      'import esnext from "@bablr/language-en-esnext";' "\n"
+      'import json from "@bablr/language-en-json";' "\n"
+      "\n"
+      'let { entry } = BMap;' "\n"
+      "\n"
+      'let languages = BMap.from(' "\n"
+      '  entry(cstml.canonicalURL, cstml),' "\n"
+      '  entry(esnext.canonicalURL, esnext),' "\n"
+      '  entry(json.canonicalURL, json),' "\n"
+      ');' "\n"
+      "\n"
+      'let highlightIterator = highlightAll(languages);' "\n"
+      "\n"
+      '// Highlighting is async so that interaction is not blocked' "\n"
+      'evaluateReturn(highlightIterator);' "\n"
+    </>
+  </>
+</>
+
+
