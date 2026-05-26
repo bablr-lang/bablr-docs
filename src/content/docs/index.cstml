@@ -9,6 +9,15 @@ hero:
     - text: Discover CSTML
       link: /guides/cstml
 
+    - text: BABLR API
+      link: /reference/bablr
+
+    - text: Bedazzlr API
+      link: /reference/bedazzlr
+
+    - text: Stream Iterators
+      link: /architecture/spacetime
+
     - text: "...more coming soon"
       link: "#"
 description: The homepage for BABLR documentation
