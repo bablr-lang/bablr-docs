@@ -1,0 +1,56 @@
+---
+// Copyright (c) 2022 withastro
+import { logos } from 'virtual:starlight/user-images';
+import config from 'virtual:starlight/user-config';
+const { siteTitle, siteTitleHref } = Astro.locals.starlightRoute;
+---
+
+<span class="site-title sl-flex">
+	<a class="bablr-logo" href='https://bablr.org/' aria-label="Astro">
+    <img class="dark:sl-hidden print:block" src={logos.light?.src} alt={config.logo.alt} />
+    <img class="light:sl-hidden print:block" src={logos.dark?.src} alt={config.logo.alt} />
+  </>
+  <a href={siteTitleHref}>
+    <span class:list={{ 'sr-only': config.logo?.replacesTitle }} translate="no">
+      {siteTitle}
+    </span>
+  </a>
+</span>
+
+<style>
+	.site-title a {
+		display: flex;
+	}
+
+  .site-title {
+    margin-top: -0.17em;
+  }
+
+  .site-title img {
+    margin-bottom: -0.28em;
+  }
+
+  .site-title {
+    align-items: center;
+    gap: 0.4em;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .site-title > a{
+    font-size: var(--sl-text-h4);
+    font-weight: 600;
+    color: var(--sl-color-text-accent);
+    text-decoration: none;
+  }
+  span {
+    overflow: hidden;
+  }
+  img {
+    height: calc(var(--sl-nav-height) - 2 * var(--sl-nav-pad-y));
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: 0 50%;
+  }
+</style>

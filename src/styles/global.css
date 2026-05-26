@@ -1,12 +1,3 @@
-.site-title {
-  gap: 0.4em;
-  margin-top: -0.17em;
-}
-
-.site-title img {
-  margin-bottom: -0.28em;
-}
-
 :root[data-theme='dark'] {
   pre {
     background-color: var(--sl-color-bg-sidebar);

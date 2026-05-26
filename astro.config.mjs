@@ -25,6 +25,9 @@ export default defineConfig({
       },
       prerender: true,
       favicon: '/favicon.ico',
+      components: {
+        SiteTitle: './src/components/SiteTitle.astro',
+      },
       social: [
         {
           icon: 'github',
