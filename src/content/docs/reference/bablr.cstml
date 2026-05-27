@@ -50,6 +50,8 @@ title: 'bablr'
   </>
     <pre>
     <code { 'bablr-lang': 'https://bablr.org/languages/universe/en/esnext', 'bablr-prod': 'Program' }>
+      "import { m } from '@bablr/helpers/grammar';" "\n"
+      "\n"
       "class language {" "\n"
       "  static {" "\n"
       "    freezeClass(this);" "\n"
