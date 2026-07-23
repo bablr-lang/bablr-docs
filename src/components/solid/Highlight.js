@@ -17,12 +17,8 @@ import {
 } from '@bablr/helpers/grammar';
 import { triviaEnhancer } from '@bablr/helpers/trivia';
 import { getStreamIterator } from '@bablr/agast-helpers/stream';
-import {
-  buildSpanEntry,
-  evaluateReturn,
-  parseObject,
-  printSource,
-} from '@bablr/agast-helpers/tree';
+import { buildSpanEntry, evaluateReturn, printSource } from '@bablr/agast-helpers/tree';
+import { parseObject } from '@bablr/agast-helpers/parsers';
 import { freezeClass, freezeRecord } from '@bablr/agast-helpers/object';
 import { maybeWait } from '@bablr/agast-helpers/iterable';
 
@@ -153,20 +149,15 @@ const Highlighter = (props) => {
     if (!name && !language.defaultMatcher) return null;
 
     iter = getStreamIterator(
-      highlightCode(
-        block,
-        language,
-        name ? m`_: <${name} />` : language.defaultMatcher,
-        {
-          chunkSize: 20,
-          bablr: {
-            spans: BListKeyed.fromValues([
-              buildSpanEntry('Trivia', null, '{ spaces: 2 }'),
-              buildSpanEntry('Bare'),
-            ]),
-          },
+      highlightCode(block, language, name ? m`_: <${name} />` : language.defaultMatcher, {
+        chunkSize: 20,
+        bablr: {
+          spans: BListKeyed.fromValues([
+            buildSpanEntry('Trivia', null, '{ spaces: 2 }'),
+            buildSpanEntry('Bare'),
+          ]),
         },
-      ),
+      }),
     );
 
     let stepPromise = iter.next();
