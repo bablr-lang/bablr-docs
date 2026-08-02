@@ -58,7 +58,7 @@ const buildDoctypeTag = (
 
 ```js
 const buildOpenNodeTag = (
-  flags = Object.freeze({ token: false, hasGap: false }),
+  flags = Object.freeze({ token: false }),
   language = null,
   type = null,
   attributes = Object.freeze({}),

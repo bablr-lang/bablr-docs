@@ -208,15 +208,11 @@ title: "Intro to CSTML"
 
   <pre>
     <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
-      '<$NameBadge>' "\n"
+      '<NameBadge>' "\n"
       '  "Hello, my name is "' "\n"
       '  <//>' "\n"
       '</>' "\n"
     </>
-  </>
-
-  <p>
-    "In this example you may also have noticed the " <code '$' /> " in " <code '$NameBadge' />". This is called the \"template flag\" because it indicates that parts of this document may be missing -- that there may be gaps."
   </>
 
   <p>
