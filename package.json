@@ -21,6 +21,7 @@
     "@bablr/language-en-json": "0.14.1",
     "@bablr/language-en-esnext": "0.4.1",
     "@solid-primitives/intersection-observer": "2.2.4",
+    "agast": "^1.0.0",
     "astro": "^5.7.0",
     "bedazzlr": "0.3.4",
     "find-up": "8.0.0",

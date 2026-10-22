@@ -16,11 +16,10 @@ import {
   startSpan,
 } from '@bablr/helpers/grammar';
 import { triviaEnhancer } from '@bablr/helpers/trivia';
-import { getStreamIterator } from '@bablr/agast-helpers/stream';
-import { buildSpanEntry, evaluateReturn, printSource } from '@bablr/agast-helpers/tree';
-import { parseObject } from '@bablr/agast-helpers/parsers';
+import { buildSpanEntry, printSource } from '@bablr/agast-helpers/tree';
+import { parseObject } from 'agast';
 import { freezeClass, freezeRecord } from '@bablr/agast-helpers/object';
-import { maybeWait } from '@bablr/agast-helpers/iterable';
+import { getStreamIterator, maybeWait } from '@bablr/agast-helpers/iterable';
 
 Error.stackTraceLimit = 20;
 
@@ -89,7 +88,7 @@ let proposalStreamIterator = (language) => {
     *AwaitExpression() {
       yield eat(m`sigilToken*: <*Keyword 'await' />`);
       yield eatMatch(m`optionalToken*: <* '?' />`);
-      yield eat(m`expression+$: <_Expression />`);
+      yield eat(m`expression$: <^_Expression />`);
     }
   }
 

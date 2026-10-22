@@ -94,7 +94,6 @@ const buildReferenceTag = (
   name = null,
   flags = Object.freeze({
     array: false,
-    expression: false,
     intrinsic: false,
     hasGap: false,
   }),
