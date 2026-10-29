@@ -99,7 +99,7 @@ let proposalStreamIterator = (language) => {
       triviaIsAllowed: (s) => s.span.name === 'Bare',
 
       *Trivia({ s }) {
-        let span = BListKeyed.get('Trivia', s().spans);
+        let span = BListKeyed.get('Trivia', s.spans());
 
         let spaces = (span && parseObject(span.props).spaces) ?? Infinity;
 

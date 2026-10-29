@@ -156,10 +156,10 @@ const buildAttributeDefinitionTag = (path, value) => {
 **`ShiftTag`**: A shift tag immediately follows a `CloseNodeTag` and causes the just-finished node to be detached from its reference and "held". While a node is being held, most other state transitions are disabled. The usual way to clear the hold is to advance an `OpenNodeTag` followed by a `ReferenceTag` followed by a `GapTag`. The gap will be filled with the held node with the end result that the held node has moved deeper into the parse tree than it was when the node was originally recognized
 
 ```js
-const buildShiftTag = (index) => {
+const buildShiftTag = () => {
   return Object.freeze({
     type: Symbol.for('ShiftTag'),
-    value: Object.freeze({ index }),
+    value: Object.freeze({}),
   });
 };
 ```
