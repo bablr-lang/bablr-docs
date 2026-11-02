@@ -96,7 +96,7 @@ let proposalStreamIterator = (language) => {
 
   return triviaEnhancer(
     {
-      triviaIsAllowed: (s) => s.span.name === 'Bare',
+      triviaIsAllowed: (s) => s.span().name === 'Bare',
 
       *Trivia({ s }) {
         let span = BListKeyed.get('Trivia', s.spans());
