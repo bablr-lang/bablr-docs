@@ -141,7 +141,7 @@ const buildLiteralTag = (value) => {
 **`AttributeDefinition`**: An attribute definition amends its most immediate containing node's open tag by defining assigning the specified `value` to an attribute which was previously `undefined`.
 
 ```js
-const buildAttributeDefinitionTag = (path, value) => {
+const buildAttributeTag = (path, value) => {
   return Object.freeze({
     type: Symbol.for('AttributeDefinition'),
     value: Object.freeze({ path, value }),
