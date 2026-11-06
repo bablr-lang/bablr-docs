@@ -337,7 +337,7 @@ title: "Intro to CSTML"
   <pre>
     <code { 'bablr-lang': 'https://bablr.org/languages/core/en/cstml' }>
       ":JS: <_Expression>" "\n"
-      "  _: :JSX: <OpenNodeTag />" "\n"
+      "  _: :JSX: <OpenTag />" "\n"
       "</>" "\n"
     </>
   </>

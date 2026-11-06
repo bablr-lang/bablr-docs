@@ -18,13 +18,9 @@ let vm = agast();
 let lang = 'https://example';
 let step;
 
-let openTag = b.buildOpenNodeTag(
-  b.tokenFlags,
-  lang,
-  'Token',
-);
+let openTag = b.buildOpenTag(b.tokenFlags, lang, 'Token');
 let closeTag = b.buildLiteralTag('OK');
-let closeTag = b.buildCloseNodeTag();
+let closeTag = b.buildCloseTag();
 
 step = vm.next(openTag);
 step = vm.next(literalTag);
@@ -54,17 +50,17 @@ const buildDoctypeTag = (
 };
 ```
 
-**`OpenNodeTag`**: Regular CSTML nodes begin with an open node tag. Each open tag must be balanced by a matching close tag. When `tag.value.lanuage` is null an open node tag should be considered to open a fragment node and must be preceded by a doctype tag. You can access a facacde over the partially-constructed node as `vm.next(openTag).value`
+**`OpenTag`**: Regular CSTML nodes begin with an open node tag. Each open tag must be balanced by a matching close tag. When `tag.value.lanuage` is null an open node tag should be considered to open a fragment node and must be preceded by a doctype tag. You can access a facacde over the partially-constructed node as `vm.next(openTag).value`
 
 ```js
-const buildOpenNodeTag = (
+const buildOpenTag = (
   flags = Object.freeze({ token: false }),
   language = null,
   type = null,
   attributes = Object.freeze({}),
 ) => {
   return Object.freeze({
-    type: Symbol.for('OpenNodeTag'),
+    type: Symbol.for('OpenTag'),
     value: Object.freeze({
       flags: Object.freeze(flags),
       language,
@@ -75,18 +71,18 @@ const buildOpenNodeTag = (
 };
 ```
 
-**`CloseNodeTag`**: Each close tag matches and cancels out an open tag. The tags between the open tag and its matching close are the contents of the node. `vm.next(closeTag).value` is a node facade which has been made transparent, which is to say the real fully-constructed immtuable node is available as `vm.next(closeTag).value.node`.
+**`CloseTag`**: Each close tag matches and cancels out an open tag. The tags between the open tag and its matching close are the contents of the node. `vm.next(closeTag).value` is a node facade which has been made transparent, which is to say the real fully-constructed immtuable node is available as `vm.next(closeTag).value.node`.
 
 ```js
-const buildCloseNodeTag = () => {
+const buildCloseTag = () => {
   return Object.freeze({
-    type: Symbol.for('CloseNodeTag'),
+    type: Symbol.for('CloseTag'),
     value: undefined,
   });
 };
 ```
 
-**`ReferenceTag`**: A reference tag defines a name for a property of a node. It also defines information about the releationship which is not essential to the indentity of the related node. A reference tag must be followed by an `OpenNodeTag`, a `NullTag`, a `GapTag` or an `InitializerTag`.
+**`ReferenceTag`**: A reference tag defines a name for a property of a node. It also defines information about the releationship which is not essential to the indentity of the related node. A reference tag must be followed by an `OpenTag`, a `NullTag`, a `GapTag` or an `InitializerTag`.
 
 ```js
 const buildReferenceTag = (
@@ -153,7 +149,7 @@ const buildAttributeDefinitionTag = (path, value) => {
 };
 ```
 
-**`ShiftTag`**: A shift tag immediately follows a `CloseNodeTag` and causes the just-finished node to be detached from its reference and "held". While a node is being held, most other state transitions are disabled. The usual way to clear the hold is to advance an `OpenNodeTag` followed by a `ReferenceTag` followed by a `GapTag`. The gap will be filled with the held node with the end result that the held node has moved deeper into the parse tree than it was when the node was originally recognized
+**`ShiftTag`**: A shift tag immediately follows a `CloseTag` and causes the just-finished node to be detached from its reference and "held". While a node is being held, most other state transitions are disabled. The usual way to clear the hold is to advance an `OpenTag` followed by a `ReferenceTag` followed by a `GapTag`. The gap will be filled with the held node with the end result that the held node has moved deeper into the parse tree than it was when the node was originally recognized
 
 ```js
 const buildShiftTag = () => {
